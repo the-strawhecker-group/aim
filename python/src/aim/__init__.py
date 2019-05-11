@@ -1,7 +1,7 @@
 """ The AIM API provides powerful market analysis.
 """
 import json
-from base64 import b64decode
+from base64 import urlsafe_b64decode
 from datetime import datetime, timedelta
 
 import requests
@@ -20,13 +20,26 @@ class Token:
         tok = self.jwt_str.split(".")[1]
         # Add back the b64 omitted padding (JWT spec excludes it for URL safe values)
         tok += "=" * ((4 - len(tok) % 4) % 4)
-        meta = json.loads(b64decode(tok))
+        meta = json.loads(self._base64urldecode(tok))
         self.exp = datetime.utcfromtimestamp(meta["exp"])
         self.email = meta["email"]
 
     @property
     def ttl(self):
         return self.exp - datetime.utcnow()
+
+    @staticmethod
+    def _base64urldecode(s):
+        """ https://www.rfc-editor.org/rfc/rfc7515.html#appendix-C
+        """
+        rem = len(s) % 4
+        if rem == 2:
+            s += "=="
+        elif rem == 3:
+            s += "="
+        elif rem != 0:
+            raise ValueError("Illegal base64url string!")
+        return urlsafe_b64decode(s.encode("utf-8"))
 
     def __str__(self):
         return self.jwt_str
