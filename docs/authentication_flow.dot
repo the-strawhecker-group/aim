@@ -1,0 +1,9 @@
+digraph G {
+  api_user [label="API User",shape=box];
+  firebase [label="Firebase",shape=oval];
+  aim_api [label="AIM API",shape=oval];
+
+  api_user -> firebase [label="RT"];
+  firebase -> api_user [label="AT"];
+  api_user -> aim_api [label="AT"];
+}
