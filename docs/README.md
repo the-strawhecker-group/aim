@@ -13,8 +13,8 @@ release.
 
 # API Discovery
 
-In order to facilitate API discovery and reduce client coupling, the AIM API
-provides an API discovery document. This document is available at:
+In order to reduce client coupling, the AIM API provides an API discovery
+document available at:
 
 <a id="api-discovery-config-url"
 href="https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json">
