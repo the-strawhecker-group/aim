@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
      .then(res => res.json())
      .then((data) => {
         access_token_url.href = access_token_url.innerHTML = data.urls.accessToken;
-        discovery_config.innerHTML = JSON.stringify(data);
+        discovery_config.innerHTML = JSON.stringify(data, null, 2);
      })
      .catch(err => { throw err });
 });
