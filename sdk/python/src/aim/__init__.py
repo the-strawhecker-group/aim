@@ -52,7 +52,7 @@ class Client:
         self.app_origin = app_origin
         # Load additional API config
         config = requests.get(CONFIG_URL_FMT.format(app_origin=self.app_origin)).json()
-        self._id_token_url = config["idTokenUrl"]
+        self._id_token_url = config["urls"]["accessToken"]
         self.app_id = config["appId"]
 
     def _fetch_token(self):
