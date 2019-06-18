@@ -1,4 +1,4 @@
-$().ready(function() {
+document.addEventListener("load", function() {
    var access_token_url = document.getElementById("access-token-url"),
        discovery_url = document.getElementById("api-discovery-config-url"),
        discovery_config = document.getElementById("api-discovery-config");
