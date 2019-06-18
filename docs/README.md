@@ -1,5 +1,3 @@
-# AIM API
-
 Welcome to the *AIM API - Alpha*!
 
 # Alpha Notice
@@ -12,6 +10,29 @@ at least 5 business days in advance.
 TSG reserves the right to determine what constitutes a breaking changes. A
 definition of "breaking changes" will be made available before formal
 release.
+
+# API Discovery
+
+In order to facilitate API discovery and reduce client coupling, the AIM API
+provides an API discovery document. This document is available at:
+
+<a id="api-discovery-config-url"
+href="https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json">
+https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json
+</a>
+
+<code id="api-discovery-config"></code>
+<script>
+    var l = document.getElementById("api-discovery-config-url"),
+        c = document.getElementById("api-discovery-config");
+    fetch(l.href)
+      .then(res => res.json())
+      .then((data) => {c.innerHTML = data})
+      .catch(err => { throw err });
+</script>
+
+The primary attributes of interest is the `urls` object, which provides static
+names to full or partial URLs.
 
 # Authentication
 
@@ -39,6 +60,43 @@ In short, the authentication flow looks like the following:
 
 ![Authentication Flow](./authentication_flow.png)
 
+Once acquired, the Access Token must be sent in the `Authorization` HTTP
+Header as a `Bearer` token.
+
+## Obtain an Access Token
+
+In order to obtain an Access Token, we'll use the `accessToken` url from the
+[Discovery document](#api-discovery), which allows us to exchange our
+Refresh Token for a fresh Access Token.
+
+<code id="access-token-url"></code>
+<script>
+    var l = document.getElementById("api-discovery-config-url"),
+        c = document.getElementById("access-token-url");
+    fetch(l.href)
+      .then(res => res.json())
+      .then((data) => {c.innerHTML = data.urls.accessToken})
+      .catch(err => { throw err });
+</script>
+
+We'll make a POST request with the following payload, injecting the Refresh
+Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API
+Key>}`. We'll extract the `id_token` field from the response, which gives
+the Access Token, which can then be sent to the API.
+
+For example, with `curl` to make the request and `jq` to extract the field:
+
+```
+API_KEY="<Refresh Token>"
+curl -fsSl -XPOST \
+     -H "Content-Type: application/json" \
+     -d "{\"grant_type\": \"refresh_token\", \"refresh_token\": \"$API_KEY\"}" \
+     "<p id="access-token-url"></p>" \
+     | jq -r '.id_token'
+```
+
+You now have an access token that can be used with the AIM API!
+
 ## Abuse and Privacy
 
 In order to prevent abuse and data leaks, Refresh Tokens must be stored
@@ -56,9 +114,8 @@ The AIM API is available at `https://aim.thestrawgroup.com/api/warehouse/v1`.
 
 ## Query API
 
-The Query API is the primary tool provided by the AIM API. It
-provides powerful data analysis across the AIM dataset across
-multiple dimensions.
+The Query API is the primary tool provided by the AIM API. It provides
+powerful data analysis across multiple dimensions of the AIM dataset.
 
 The Query API is comprised of 4 primary components:
 - Aggregations
@@ -66,7 +123,8 @@ The Query API is comprised of 4 primary components:
 - Metrics
 - Normalizations
 
-Each component has a discovery endpoint to obtain metadata for dynamic.
+Each component has a discovery endpoint to obtain the available items
+with full metadata.
 
 ### Aggregation
 
