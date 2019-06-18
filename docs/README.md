@@ -21,7 +21,7 @@ href="https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.jso
 https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json
 </a>
 
-<code id="api-discovery-config"></code>
+<pre><code id="api-discovery-config"></code></pre>
 
 The primary attributes of interest is the `urls` object, which provides static
 names to full or partial URLs.
