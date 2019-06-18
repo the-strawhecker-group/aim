@@ -537,5 +537,5 @@ Volume - Units in dollars.
 
 </details>
 
-<script src="/README.js"></script>
+<script src="./README.js"></script>
 
