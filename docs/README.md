@@ -22,14 +22,6 @@ https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json
 </a>
 
 <code id="api-discovery-config"></code>
-<script>
-    var l = document.getElementById("api-discovery-config-url"),
-        c = document.getElementById("api-discovery-config");
-    fetch(l.href)
-      .then(res => res.json())
-      .then((data) => {c.innerHTML = data})
-      .catch(err => { throw err });
-</script>
 
 The primary attributes of interest is the `urls` object, which provides static
 names to full or partial URLs.
@@ -70,14 +62,6 @@ In order to obtain an Access Token, we'll use the `accessToken` url from the
 Refresh Token for a fresh Access Token.
 
 <code id="access-token-url"></code>
-<script>
-    var l = document.getElementById("api-discovery-config-url"),
-        c = document.getElementById("access-token-url");
-    fetch(l.href)
-      .then(res => res.json())
-      .then((data) => {c.innerHTML = data.urls.accessToken})
-      .catch(err => { throw err });
-</script>
 
 We'll make a POST request with the following payload, injecting the Refresh
 Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API
@@ -552,4 +536,6 @@ Volume - Units in dollars.
 #### Per Merchant - Retained Account Size Post-Change
 
 </details>
+
+<script src="/README.js"></script>
 
