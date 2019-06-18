@@ -11,7 +11,9 @@ TSG reserves the right to determine what constitutes a breaking changes. A
 definition of "breaking changes" will be made available before formal
 release.
 
-# API Discovery
+# HTTP API
+
+## API Discovery
 
 In order to reduce client coupling, the AIM API provides an API discovery
 document available at:
@@ -23,7 +25,7 @@ document available at:
 The primary attributes of interest is the `urls` object, which provides static
 names to full or partial URLs.
 
-# Authentication
+## Authentication
 
 The AIM API leverages [Firebase
 Authentication](https://firebase.google.com/docs/auth) to securely
@@ -52,7 +54,7 @@ used to decode them and inspect the `exp` entry for a Unix timestamp after
 which the token will be rejected by the API. A number of JWT libraries are
 referenced in the link above.
 
-## Obtain an Access Token
+### Obtain an Access Token
 
 In order to obtain an Access Token, we'll use the `accessToken` url from the
 [Discovery document](#api-discovery), which allows us to exchange our
@@ -79,7 +81,7 @@ curl -fsSl -XPOST \
 
 You now have an access token that can be used with the AIM API!
 
-## Abuse and Privacy
+### Abuse and Privacy
 
 In order to prevent abuse and data leaks, Refresh Tokens must be stored
 securely. In particular, avoid unneeded sharing of Refresh Tokens or storing
@@ -90,25 +92,92 @@ Istas](mailto:jistas@thestrawgroup.com) at TSG as soon as possible. If abuse
 is suspected, TSG may disable Refresh Tokens immediately and follow up with
 the API contact.
 
-# HTTP API
-
-The AIM API is available at `https://aim.thestrawgroup.com/api/warehouse/v1`.
-
 ## Query API
 
 The Query API is the primary tool provided by the AIM API. It provides
 powerful data analysis across multiple dimensions of the AIM dataset.
 
 The Query API is comprised of 4 primary components:
-- Aggregations
-- Attributes
-- Metrics
-- Normalizations
+- `aggregation`
+- `attribute`
+- `metric`
+- `normalization`
 
 Each component has a discovery endpoint to obtain the available items
-with full metadata.
+with full metadata. All query urls are based from the `warehouse` url in
+the [discovery document](#api-discovery): <code
+class="warehouse-url"></code>
 
-<a class="warehouse-url"></a>
+### Quickstart
+
+After you've [acquired an Access Token](#obtain-an-access-token), we'll
+start with a few simple API calls. The calls will use `curl` for
+demonstration, but of course, any HTTP client will do. In these
+examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any
+query results are for demonstration only and do not represent real
+values.
+
+```
+# Inspect all attributes. Note the rich metadata describing the data
+# type, filter config and values, among other things. These attributes
+# determine how the data can be filtered and grouped.
+curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+        "$BASE_URL/attribute/"
+
+# Inspect all metrics. You'll notice that metrics have "availability"
+# metadata describing what attributes and normalizations they support.
+curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+        "$BASE_URL/metric/"
+
+# Let's run a few queries to pull out some volume data:
+curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01"
+# [
+#   {
+#     "volume":12864.75939
+#   }
+# ]
+
+# Now, let's see the volume for credit and sig debit:
+curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01;card=credit,sig_debit&group_by=card"
+# [
+#  {
+#    "card": "credit",
+#    "volume": 28327.3061
+#  },
+#  {
+#    "card": "sig_debit",
+#    "volume": 1924.48568
+#  }
+#]
+
+# How about focused on Omaha, Iowa, Kansas, and Missouri?
+curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=card"
+# [
+#   {
+#     "card": "credit",
+#     "volume": 23394.83581
+#   },
+#   {
+#     "card": "sig_debit",
+#     "volume": 1483.83589
+#   }
+# ]
+
+# By default, calculations are "Per Merchant", but we can change to
+# another normalization. Let's try some different metrics with "Per
+# Transaction"
+curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+        "$BASE_URL/query?metrics=volume,rev__net&filter=date=2018-01&normalization=transaction"
+# [
+#   {
+#     "rev__net": 0.58291,
+#     "volume": 73.43840
+#   }
+# ]
+```
 
 ### Aggregation
 
