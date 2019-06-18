@@ -1,12 +1,20 @@
+function assignUrl(className, url) {
+  const elems = Array.from(document.getElementsByClassName(className));
+  elems.forEach(elem => {
+     elem.href = elem.innerHTML = url;
+  })
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-   var access_token_url = document.getElementById("access-token-url"),
-       discovery_url = document.getElementById("api-discovery-config-url"),
-       discovery_config = document.getElementById("api-discovery-config");
-   fetch(discovery_url.href)
-     .then(res => res.json())
-     .then((data) => {
-        access_token_url.href = access_token_url.innerHTML = data.urls.accessToken;
-        discovery_config.innerHTML = JSON.stringify(data, null, 2);
-     })
-     .catch(err => { throw err });
+  const discovery_url = "https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json"
+  fetch(discovery_url)
+    .then(res => res.json())
+    .then((data) => {
+      Object.keys(data.urls).forEach(name => {
+        assignUrl(`${name}-url`, data.urls[name])
+      });
+      assignUrl("discovery-config-url", discovery_url)
+      document.getElementById("discovery-config").innerHTML = JSON.stringify(data, null, 2);
+    })
+    .catch(err => { throw err });
 });

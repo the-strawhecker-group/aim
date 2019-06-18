@@ -16,12 +16,9 @@ release.
 In order to reduce client coupling, the AIM API provides an API discovery
 document available at:
 
-<a id="api-discovery-config-url"
-href="https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json">
-https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json
-</a>
+<a class="discovery-config-url"></a>
 
-<pre><code id="api-discovery-config"></code></pre>
+<pre><code id="discovery-config"></code></pre>
 
 The primary attributes of interest is the `urls` object, which provides static
 names to full or partial URLs.
@@ -38,13 +35,6 @@ These Refresh Tokens do not expire and can be used to retrieve short lived Acces
 Tokens. Access Tokens are used to directly communicate with the AIM API,
 which will validate the Access Token.
 
-As Access Tokens are short lived (1 hour as of writing), a new one must be
-fetched before expiration and replaced in requests to the API. Access Tokens
-are [JSON Web Tokens](https://jwt.io/), so any standard JWT libary can be
-used to decode them and inspect the `exp` entry for a Unix timestamp after
-which the token will be rejected by the API. A number of JWT libraries are
-referenced in the link above.
-
 In short, the authentication flow looks like the following:
 1. Exchange a Refresh Token for an Access Token with Firebase
 2. Use the Access Token with the AIM API
@@ -55,17 +45,24 @@ In short, the authentication flow looks like the following:
 Once acquired, the Access Token must be sent in the `Authorization` HTTP
 Header as a `Bearer` token.
 
+As Access Tokens are short lived (1 hour as of writing), a new one must be
+fetched before expiration and replaced in requests to the API. Access Tokens
+are [JSON Web Tokens](https://jwt.io/), so any standard JWT libary can be
+used to decode them and inspect the `exp` entry for a Unix timestamp after
+which the token will be rejected by the API. A number of JWT libraries are
+referenced in the link above.
+
 ## Obtain an Access Token
 
 In order to obtain an Access Token, we'll use the `accessToken` url from the
 [Discovery document](#api-discovery), which allows us to exchange our
 Refresh Token for a fresh Access Token.
 
-<a id="access-token-url"></a>
+<a class="accessToken-url"></a>
 
 We'll make a POST request with the following payload, injecting the Refresh
 Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API
-Key>}`. We'll extract the `id_token` field from the response, which gives
+Key>}`. We'll extract the `id_token` field from the response, which contains
 the Access Token, which can then be sent to the API.
 
 For example, with `curl` to make the request and `jq` to extract the field:
@@ -110,6 +107,8 @@ The Query API is comprised of 4 primary components:
 
 Each component has a discovery endpoint to obtain the available items
 with full metadata.
+
+<a class="warehouse-url"></a>
 
 ### Aggregation
 
