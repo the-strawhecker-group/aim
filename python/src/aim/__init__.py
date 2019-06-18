@@ -16,11 +16,8 @@ class Token:
 
     def __init__(self, jwt_str):
         self.jwt_str = jwt_str
-        # Check for expiration
-        tok = self.jwt_str.split(".")[1]
         # Add back the b64 omitted padding (JWT spec excludes it for URL safe values)
-        tok += "=" * ((4 - len(tok) % 4) % 4)
-        meta = json.loads(self._base64urldecode(tok))
+        meta = json.loads(self._base64urldecode(self.jwt_str.split(".")[1]))
         self.exp = datetime.utcfromtimestamp(meta["exp"])
         self.email = meta["email"]
 
