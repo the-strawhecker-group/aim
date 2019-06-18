@@ -61,7 +61,7 @@ In order to obtain an Access Token, we'll use the `accessToken` url from the
 [Discovery document](#api-discovery), which allows us to exchange our
 Refresh Token for a fresh Access Token.
 
-<code id="access-token-url"></code>
+<a id="access-token-url"></a>
 
 We'll make a POST request with the following payload, injecting the Refresh
 Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API
@@ -70,12 +70,13 @@ the Access Token, which can then be sent to the API.
 
 For example, with `curl` to make the request and `jq` to extract the field:
 
-```
+```sh
+ACCESS_TOKEN_URL="<Access Token Discovery URL>"
 API_KEY="<Refresh Token>"
 curl -fsSl -XPOST \
      -H "Content-Type: application/json" \
      -d "{\"grant_type\": \"refresh_token\", \"refresh_token\": \"$API_KEY\"}" \
-     "<p id="access-token-url"></p>" \
+     "$ACCESS_TOKEN_URL" \
      | jq -r '.id_token'
 ```
 
