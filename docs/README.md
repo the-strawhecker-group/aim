@@ -30,7 +30,7 @@ names to full or partial URLs.
 The AIM API leverages [Firebase
 Authentication](https://firebase.google.com/docs/auth) to securely
 authenticate services and users. To enable API usage, service accounts are
-created and used to generate a secret refresh token that is given to the
+created and used to generate a secret Refresh Token that is given to the
 primary API contact.
 
 These Refresh Tokens do not expire and can be used to retrieve short lived Access
@@ -79,7 +79,7 @@ curl -fsSl -XPOST \
      | jq -r '.id_token'
 ```
 
-You now have an access token that can be used with the AIM API!
+You now have an Access Token that can be used with the AIM API!
 
 ### Abuse and Privacy
 
@@ -87,7 +87,7 @@ In order to prevent abuse and data leaks, Refresh Tokens must be stored
 securely. In particular, avoid unneeded sharing of Refresh Tokens or storing
 them in source files/source control.
 
-If you suspect your refresh token has been compromised, contact [Josh
+If you suspect your Refresh Token has been compromised, contact [Josh
 Istas](mailto:jistas@thestrawgroup.com) at TSG as soon as possible. If abuse
 is suspected, TSG may disable Refresh Tokens immediately and follow up with
 the API contact.
