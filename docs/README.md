@@ -606,7 +606,7 @@ Volume - Units in dollars.
 
 </details>
 
-© The Strawhecker Group. All Rights Reserved.
+<footer>© The Strawhecker Group. All Rights Reserved.</footer>
 
 <script src="./README.js"></script>
 
