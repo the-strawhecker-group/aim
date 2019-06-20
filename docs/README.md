@@ -2,40 +2,27 @@ Welcome to the *AIM API - Alpha*!
 
 # Alpha Notice
 
-The AIM API is in an "alpha stage" to gather customer feedback. While in
-alpha, the API may change in backwards incompatible ways to accommodate for
-fixes and additions. Breaking changes will be communicated to the primary API contact
-at least 5 business days in advance.
+The AIM API is in an "alpha stage" to gather customer feedback. While in alpha, the API may change in backwards incompatible ways to accommodate for fixes and additions. Breaking changes will be communicated to the primary API contact at least 5 business days in advance.
 
-TSG reserves the right to determine what constitutes a breaking changes. A
-definition of "breaking changes" will be made available before formal
-release.
+TSG reserves the right to determine what constitutes a breaking changes. A definition of "breaking changes" will be made available before formal release.
 
 # HTTP API
 
 ## API Discovery
 
-In order to reduce client coupling, the AIM API provides an API discovery
-document available at:
+In order to reduce client coupling, the AIM API provides an API discovery document available at:
 
 <a class="discovery-config-url"></a>
 
 <pre><code id="discovery-config"></code></pre>
 
-The primary attributes of interest is the `urls` object, which provides static
-names to full or partial URLs.
+The primary attributes of interest is the `urls` object, which provides static names to full or partial URLs.
 
 ## Authentication
 
-The AIM API leverages [Firebase
-Authentication](https://firebase.google.com/docs/auth) to securely
-authenticate services and users. To enable API usage, service accounts are
-created and used to generate a secret Refresh Token that is given to the
-primary API contact.
+The AIM API leverages [Firebase Authentication](https://firebase.google.com/docs/auth) to securely authenticate services and users. To enable API usage, service accounts are created and used to generate a secret Refresh Token that is given to the primary API contact.
 
-These Refresh Tokens do not expire and can be used to retrieve short lived Access
-Tokens. Access Tokens are used to directly communicate with the AIM API,
-which will validate the Access Token.
+These Refresh Tokens do not expire and can be used to retrieve short lived Access Tokens. Access Tokens are used to directly communicate with the AIM API, which will validate the Access Token.
 
 In short, the authentication flow looks like the following:
 1. Exchange a Refresh Token for an Access Token with Firebase
@@ -44,28 +31,17 @@ In short, the authentication flow looks like the following:
 
 ![Authentication Flow](./authentication_flow.png)
 
-Once acquired, the Access Token must be sent in the `Authorization` HTTP
-Header as a `Bearer` token.
+Once acquired, the Access Token must be sent in the `Authorization` HTTP Header as a `Bearer` token.
 
-As Access Tokens are short lived (1 hour as of writing), a new one must be
-fetched before expiration and replaced in requests to the API. Access Tokens
-are [JSON Web Tokens](https://jwt.io/), so any standard JWT libary can be
-used to decode them and inspect the `exp` entry for a Unix timestamp after
-which the token will be rejected by the API. A number of JWT libraries are
-referenced in the link above.
+As Access Tokens are short lived (1 hour as of writing), a new one must be fetched before expiration and replaced in requests to the API. Access Tokens are [JSON Web Tokens](https://jwt.io/), so any standard JWT libary can be used to decode them and inspect the `exp` entry for a Unix timestamp after which the token will be rejected by the API. A number of JWT libraries are referenced in the link above.
 
 ### Obtain an Access Token
 
-In order to obtain an Access Token, we'll use the `accessToken` url from the
-[Discovery document](#api-discovery), which allows us to exchange our
-Refresh Token for a fresh Access Token.
+In order to obtain an Access Token, we'll use the `accessToken` url from the [Discovery document](#api-discovery), which allows us to exchange our Refresh Token for a fresh Access Token.
 
 <a class="accessToken-url"></a>
 
-We'll make a POST request with the following payload, injecting the Refresh
-Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API
-Key>}`. We'll extract the `id_token` field from the response, which contains
-the Access Token, which can then be sent to the API.
+We'll make a POST request with the following payload, injecting the Refresh Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API Key>}`. We'll extract the `id_token` field from the response, which contains the Access Token, which can then be sent to the API.
 
 For example, with `curl` to make the request and `jq` to extract the field:
 
@@ -83,19 +59,13 @@ You now have an Access Token that can be used with the AIM API!
 
 ### Abuse and Privacy
 
-In order to prevent abuse and data leaks, Refresh Tokens must be stored
-securely. In particular, avoid unneeded sharing of Refresh Tokens or storing
-them in source files/source control.
+In order to prevent abuse and data leaks, Refresh Tokens must be stored securely. In particular, avoid unneeded sharing of Refresh Tokens or storing them in source files/source control.
 
-If you suspect your Refresh Token has been compromised, contact [Josh
-Istas](mailto:jistas@thestrawgroup.com) at TSG as soon as possible. If abuse
-is suspected, TSG may disable Refresh Tokens immediately and follow up with
-the API contact.
+If you suspect your Refresh Token has been compromised, contact [Josh Istas](mailto:jistas@thestrawgroup.com) at TSG as soon as possible. If abuse is suspected, TSG may disable Refresh Tokens immediately and follow up with the API contact.
 
 ## Query API
 
-The Query API is the primary tool provided by the AIM API. It provides
-powerful data analysis across multiple dimensions of the AIM dataset.
+The Query API is the primary tool provided by the AIM API. It provides powerful data analysis across multiple dimensions of the AIM dataset.
 
 The Query API is comprised of 4 primary components:
 - `aggregation`
@@ -103,29 +73,20 @@ The Query API is comprised of 4 primary components:
 - `metric`
 - `normalization`
 
-Each component has a discovery endpoint to obtain the available items
-with full metadata. All query urls are based from the `warehouse` url in
-the [discovery document](#api-discovery): <code
-class="warehouse-url"></code>
+Each component has a discovery endpoint to obtain the available items with full metadata. All query urls are based from the `warehouse` url in the [discovery document](#api-discovery):
+
+<code class="warehouse-url"></code>
 
 ### Quickstart
 
-After you've [acquired an Access Token](#obtain-an-access-token), we'll
-start with a few simple API calls. The calls will use `curl` for
-demonstration, but of course, any HTTP client will do. In these
-examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any
-query results are for demonstration only and do not represent real
-values.
+After you've [acquired an Access Token](#obtain-an-access-token), we'll start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration only and do not represent real values.
 
 ```
-# Inspect all attributes. Note the rich metadata describing the data
-# type, filter config and values, among other things. These attributes
-# determine how the data can be filtered and grouped.
+# Inspect all attributes. Note the rich metadata describing the data type, filter config and values, among other things. These attributes determine how the data can be filtered and grouped.
 curl -H "Authorization: Bearer $ACCESS_TOKEN" \
         "$BASE_URL/attribute/"
 
-# Inspect all metrics. You'll notice that metrics have "availability"
-# metadata describing what attributes and normalizations they support.
+# Inspect all metrics. You'll notice that metrics have "availability" metadata describing what attributes and normalizations they support.
 curl -H "Authorization: Bearer $ACCESS_TOKEN" \
         "$BASE_URL/metric/"
 
@@ -166,9 +127,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 #   }
 # ]
 
-# By default, calculations are "Per Merchant", but we can change to
-# another normalization. Let's try some different metrics with "Per
-# Transaction"
+# By default, calculations are "Per Merchant", but we can change to another normalization. Let's try some different metrics with "Per Transaction"
 curl -H "Authorization: Bearer $ACCESS_TOKEN" \
         "$BASE_URL/query?metrics=volume,rev__net&filter=date=2018-01&normalization=transaction"
 # [
