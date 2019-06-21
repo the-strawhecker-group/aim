@@ -22,40 +22,40 @@ The primary attributes of interest is the `urls` object, which provides static n
 
 The AIM API leverages [Firebase Authentication](https://firebase.google.com/docs/auth) to securely authenticate services and users. To enable API usage, service accounts are created and used to generate a secret Refresh Token that is given to the primary API contact.
 
-These Refresh Tokens do not expire and can be used to retrieve short lived Access Tokens. Access Tokens are used to directly communicate with the AIM API, which will validate the Access Token.
+These Refresh Tokens do not expire and can be used to retrieve short lived ID Tokens. ID Tokens are used to directly communicate with the AIM API, which will validate the ID Token.
 
 In short, the authentication flow looks like the following:
-1. Exchange a Refresh Token for an Access Token with Firebase
-2. Use the Access Token with the AIM API
-3. Repeat step 1 as the previous Access Token expires
+1. Exchange a Refresh Token for an ID Token with Firebase
+2. Use the ID Token with the AIM API
+3. Repeat step 1 as the previous ID Token expires
 
 ![Authentication Flow](./authentication_flow.png)
 
-Once acquired, the Access Token must be sent in the `Authorization` HTTP Header as a `Bearer` token.
+Once acquired, the ID Token must be sent in the `Authorization` HTTP Header as a `Bearer` token.
 
-As Access Tokens are short lived (1 hour as of writing), a new one must be fetched before expiration and replaced in requests to the API. Access Tokens are [JSON Web Tokens](https://jwt.io/), so any standard JWT libary can be used to decode them and inspect the `exp` entry for a Unix timestamp after which the token will be rejected by the API. A number of JWT libraries are referenced in the link above.
+As ID Tokens are short lived (1 hour as of writing), a new one must be fetched before expiration and replaced in requests to the API. ID Tokens are [JSON Web Tokens](https://jwt.io/), so any standard JWT libary can be used to decode them and inspect the `exp` entry for a Unix timestamp after which the token will be rejected by the API. A number of JWT libraries are referenced in the link above.
 
-### Obtain an Access Token
+### Obtain an ID Token
 
-In order to obtain an Access Token, we'll use the `accessToken` url from the [Discovery document](#api-discovery), which allows us to exchange our Refresh Token for a fresh Access Token.
+In order to obtain an ID Token, we'll use the `id_token` url from the [Discovery document](#api-discovery), which allows us to exchange our Refresh Token for a fresh ID Token.
 
-<a class="accessToken-url"></a>
+<a class="id_token-url"></a>
 
-We'll make a POST request with the following payload, injecting the Refresh Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API Key>}`. We'll extract the `id_token` field from the response, which contains the Access Token, which can then be sent to the API.
+We'll make a POST request with the following payload, injecting the Refresh Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API Key>}`. We'll extract the `id_token` field from the response, which contains the ID Token, which can then be sent to the API.
 
 For example, with `curl` to make the request and `jq` to extract the field:
 
 ```sh
-ACCESS_TOKEN_URL="<Access Token Discovery URL>"
+ID_TOKEN_URL="<ID Token Discovery URL>"
 API_KEY="<Refresh Token>"
 curl -fsSl -XPOST \
      -H "Content-Type: application/json" \
      -d "{\"grant_type\": \"refresh_token\", \"refresh_token\": \"$API_KEY\"}" \
-     "$ACCESS_TOKEN_URL" \
+     "$ID_TOKEN_URL" \
      | jq -r '.id_token'
 ```
 
-You now have an Access Token that can be used with the AIM API!
+You now have an ID Token that can be used with the AIM API!
 
 ### Abuse and Privacy
 
@@ -79,19 +79,19 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 ### Quickstart
 
-After you've [acquired an Access Token](#obtain-an-access-token), we'll start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration only and do not represent real values.
+After you've [acquired an ID Token](#obtain-an-id-token), we'll start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration only and do not represent real values.
 
 ```
 # Inspect all attributes. Note the rich metadata describing the data type, filter config and values, among other things. These attributes determine how the data can be filtered and grouped.
-curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/attribute/"
 
 # Inspect all metrics. You'll notice that metrics have "availability" metadata describing what attributes and normalizations they support.
-curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/metric/"
 
 # Let's run a few queries to pull out some volume data:
-curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2018-01"
 # [
 #   {
@@ -100,7 +100,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 # ]
 
 # Now, let's see the volume for credit and sig debit:
-curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2018-01;card=credit,sig_debit&group_by=card"
 # [
 #  {
@@ -114,7 +114,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 #]
 
 # How about focused on Omaha, Iowa, Kansas, and Missouri?
-curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2018-01;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=card"
 # [
 #   {
@@ -128,7 +128,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 # ]
 
 # By default, calculations are "Per Merchant", but we can change to another normalization. Let's try some different metrics with "Per Transaction"
-curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume,rev__net&filter=date=2018-01&normalization=transaction"
 # [
 #   {
