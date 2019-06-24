@@ -53,7 +53,7 @@ class Client:
         # Load additional API config
         config = requests.get(CONFIG_URL_FMT.format(app_origin=self.app_origin)).json()
         self._id_token_url = config["urls"]["id_token"]
-        self.app_id = config["appId"]
+        self.app_id = config["app_id"]
 
     def _fetch_token(self):
         id_token_resp = requests.post(
