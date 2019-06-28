@@ -6,7 +6,7 @@ function assignUrl(className, url) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  const discovery_url = "https://storage.googleapis.com/public.aim.thestrawgroup.com/config/api.json"
+  const discovery_url = "https://aim.thestrawgroup.com/api.json"
   fetch(discovery_url)
     .then(res => res.json())
     .then((data) => {

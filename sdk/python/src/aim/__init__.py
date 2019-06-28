@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 
 import requests
 
-CONFIG_URL_FMT = "https://storage.googleapis.com/public.{app_origin}/config/api.json"
 DEFAULT_APP_ORIGIN = "aim.thestrawgroup.com"
 
 
@@ -51,7 +50,7 @@ class Client:
         self.api_key = api_key
         self.app_origin = app_origin
         # Load additional API config
-        config = requests.get(CONFIG_URL_FMT.format(app_origin=self.app_origin)).json()
+        config = requests.get(f"{self.app_origin}/api.json").json()
         self._id_token_url = config["urls"]["id_token"]
         self.app_id = config["app_id"]
 
