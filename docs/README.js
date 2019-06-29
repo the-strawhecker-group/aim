@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
   fetch(discovery_url)
     .then(res => res.json())
     .then((data) => {
-      Object.keys(data.urls).forEach(name => {
-        assignUrl(`${name}-url`, data.urls[name])
+      Object.keys(data.v1.urls).forEach(name => {
+        assignUrl(`${name}-url`, data.v1.urls[name])
       });
       assignUrl("discovery-config-url", discovery_url)
       document.getElementById("discovery-config").innerHTML = JSON.stringify(data, null, 2);
