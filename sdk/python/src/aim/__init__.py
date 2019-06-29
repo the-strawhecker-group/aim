@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 
 import requests
 
+API_VERSION = "v1"
 DEFAULT_APP_ORIGIN = "aim.thestrawgroup.com"
 
 
@@ -50,7 +51,7 @@ class Client:
         self.api_key = api_key
         self.app_origin = app_origin
         # Load additional API config
-        config = requests.get(f"{self.app_origin}/api.json").json()
+        config = requests.get(f"https://{self.app_origin}/api.json").json()[API_VERSION]
         self._id_token_url = config["urls"]["id_token"]
         self.app_id = config["app_id"]
 
