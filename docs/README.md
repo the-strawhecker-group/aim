@@ -33,15 +33,15 @@ In short, the authentication flow looks like the following:
 
 Once acquired, the ID Token must be sent in the `Authorization` HTTP Header as a `Bearer` token.
 
-As ID Tokens are short lived (1 hour as of writing), a new one must be fetched before expiration and replaced in requests to the API. ID Tokens are [JSON Web Tokens](https://jwt.io/), so any standard JWT libary can be used to decode them and inspect the `exp` entry for a Unix timestamp after which the token will be rejected by the API. A number of JWT libraries are referenced in the link above.
+As ID Tokens are short lived, a new one must be fetched before expiration and replaced in requests to the API. ID Tokens are [JSON Web Tokens](https://jwt.io/), so any standard JWT libary can be used to decode them and inspect the `exp` entry for a Unix timestamp after which the token will be rejected by the API. A number of JWT libraries are referenced in the link above.
 
 ### Obtain an ID Token
 
-In order to obtain an ID Token, we'll use the `id_token` url from the [Discovery document](#api-discovery), which allows us to exchange our Refresh Token for a fresh ID Token.
+In order to obtain an ID Token, use the `id_token` url from the [Discovery document](#api-discovery), which allows us to exchange our Refresh Token for a fresh ID Token.
 
 <a class="id_token-url"></a>
 
-We'll make a POST request with the following payload, injecting the Refresh Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API Key>}`. We'll extract the `id_token` field from the response, which contains the ID Token, which can then be sent to the API.
+Make a POST request with the following payload, injecting the Refresh Token as specified: `{"grant_type": "refresh_token", "refresh_token": <API Key>}`. Extract the `id_token` field from the response, which contains the ID Token, which can then be sent to the API.
 
 For example, with `curl` to make the request and `jq` to extract the field:
 
@@ -61,13 +61,13 @@ You now have an ID Token that can be used with the AIM API!
 
 In order to prevent abuse and data leaks, Refresh Tokens must be stored securely. In particular, avoid unneeded sharing of Refresh Tokens or storing them in source files/source control.
 
-If you suspect your Refresh Token has been compromised, contact [Josh Istas](mailto:jistas@thestrawgroup.com) at TSG as soon as possible. If abuse is suspected, TSG may disable Refresh Tokens immediately and follow up with the API contact.
+If you suspect your Refresh Token has been compromised, contact <mailto:AIM@thestrawgroup.com> as soon as possible. If abuse is suspected, TSG may disable Refresh Tokens immediately and follow up with the API contact.
 
 ## Query API
 
 The Query API is the primary tool provided by the AIM API. It provides powerful data analysis across multiple dimensions of the AIM dataset.
 
-The Query API is comprised of 4 primary components:
+The Query API is comprised of four (4) primary components:
 - `aggregation`
 - `attribute`
 - `metric`
@@ -79,23 +79,50 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 ### Quickstart
 
-After you've [acquired an ID Token](#obtain-an-id-token), we'll start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration only and do not represent real values.
+After [acquiring an ID Token](#obtain-an-id-token), start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration purposes only and do not represent real values.
 
 ```
 # Inspect all attributes. Note the rich metadata describing the data type, filter config and values, among other things. These attributes determine how the data can be filtered and grouped.
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/attribute/"
 
-# Inspect all metrics. You'll notice that metrics have "availability" metadata describing what attributes and normalizations they support.
+# Inspect all metrics. Notice that metrics have "availability" metadata describing what attributes and normalizations they support.
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/metric/"
 
-# Let's run a few queries to pull out some volume data:
+# Let's run a query to pull out volume data:
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2018-01"
 # [
 #   {
 #     "volume":12864.75939
+#   }
+# ]
+
+# By default, calculations are "Per Merchant", but another normalization can be selected. Let's try some different metrics with "Per Transaction"
+curl -H "Authorization: Bearer $ID_TOKEN" \
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01&normalization=transaction"
+# [
+#   {
+#     "volume": 73.43840
+#   }
+# ]
+
+# In addition to filtering by a specific month, a range can be provided. Once a date range has been specified, it can be "grouped" so the result set contains the average for each month, instead of the average across the months:
+curl -H "Authorization: Bearer $ID_TOKEN" \
+        "$BASE_URL/query?metrics=volume&filter=2018-01,2018-03&group_by=date"
+# [
+#   {
+#     "date": "2018-01-01",
+#     "volume": 28352.73849
+#   },
+#   {
+#     "date": "2018-02-01",
+#     "volume": 27424.03418
+#   },
+#   {
+#     "date": "2018-03-01",
+#     "volume": 38738.38481
 #   }
 # ]
 
@@ -127,13 +154,39 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 #   }
 # ]
 
-# By default, calculations are "Per Merchant", but we can change to another normalization. Let's try some different metrics with "Per Transaction"
+# Putting these examples together, one can see metrics per transaction in specific states grouped by card and date.
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume,rev__net&filter=date=2018-01&normalization=transaction"
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01,2018-03;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=date,card&normalization=transaction"
 # [
 #   {
-#     "rev__net": 0.58291,
-#     "volume": 73.43840
+#     "card": "credit",
+#     "date": "2018-01-01",
+#     "volume": 53.77786
+#   },
+#   {
+#     "card": "sig_debit",
+#     "date": "2018-01-01",
+#     "volume": 8.38631
+#   },
+#   {
+#     "card": "credit",
+#     "date": "2018-02-01",
+#     "volume": 68.85441
+#   },
+#   {
+#     "card": "sig_debit",
+#     "date": "2018-02-01",
+#     "volume": 2.41721
+#   },
+#   {
+#     "card": "credit",
+#     "date": "2018-03-01",
+#     "volume": 58.09631
+#   },
+#   {
+#     "card": "sig_debit",
+#     "date": "2018-03-01",
+#     "volume": 5.42187
 #   }
 # ]
 ```
@@ -173,9 +226,8 @@ Periods = 18, Frequency = Month
 
 ### Attributes
 
-Attribute base class.
-Metrics are columns of interest (Ex. Volume, Net Revenue, Processing Cost) that are co-tabulated with
-attribute columns (Ex. Date, Card, Region) that are used to filter or group the metric.
+Attributes provide the ability to filter and slice data.
+    
 
 <details markdown='1'><summary>Attributes</summary>
 
@@ -210,7 +262,7 @@ A merchant's volume tier is based on its **total** volume over a rolling 12 mont
 #### Region
 
 Geographic region of the transaction.
-Canada is a region.
+    
 
 #### State
 
