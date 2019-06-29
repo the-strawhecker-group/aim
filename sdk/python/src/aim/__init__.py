@@ -53,7 +53,6 @@ class Client:
         # Load additional API config
         config = requests.get(f"https://{self.app_origin}/api.json").json()[API_VERSION]
         self._id_token_url = config["urls"]["id_token"]
-        self.app_id = config["app_id"]
 
     def _fetch_token(self):
         id_token_resp = requests.post(
