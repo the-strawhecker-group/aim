@@ -227,6 +227,7 @@ Periods = 18, Frequency = Month
 ### Attributes
 
 Attributes provide the ability to filter and slice data.
+'*' Indicates required Attribute.
     
 
 <details markdown='1'><summary>Attributes</summary>
