@@ -110,7 +110,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 # In addition to filtering by a specific month, a range can be provided. Once a date range has been specified, it can be "grouped" so the result set contains the average for each month, instead of the average across the months:
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=2018-01,2018-03&group_by=date"
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01,2018-03&group_by=date"
 # [
 #   {
 #     "date": "2018-01-01",
