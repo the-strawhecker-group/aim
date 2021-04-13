@@ -618,14 +618,6 @@ Volume - Units in dollars.
 
 </details>
 
-
-### Metrics and their Normalizations
-
-
-The default normalization is `merchant`. The metrics have "availability" metadata describing what attributes and normalizations they support.
-curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/metric/"
-
 <details markdown='1'><summary>Metrics and their Normalizations</summary>
 
 |                   metric                      |               supported normalizations                        |
