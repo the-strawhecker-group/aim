@@ -77,6 +77,7 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 <code class="warehouse-url"></code>
 
+
 ### Quickstart
 
 After [acquiring an ID Token](#obtain-an-id-token), start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration purposes only and do not represent real values.
@@ -616,6 +617,79 @@ Volume - Units in dollars.
 #### Per Merchant - Retained Account Size Post-Change
 
 </details>
+
+
+### Metrics and their Normalizations
+
+
+The default normalization is `merchant`. The metrics have "availability" metadata describing what attributes and normalizations they support.
+curl -H "Authorization: Bearer $ID_TOKEN" \
+        "$BASE_URL/metric/"
+
+<details markdown='1'><summary>Metrics and their Normalizations</summary>
+
+|                   metric                      |               supported normalizations                        |
+|:----------------------------------------------|:--------------------------------------------------------------|    
+|	 `active_merchant_count` 	        |	 `unscaled` 	                                        |
+|	 `attrited_merchant_count` 	        |	 `merchant__last__year`	                                |
+|	 `avg_attrited_account_size` 	        |	 `merchant__attrited`	                                |
+|	 `avg_net_rev_bps_attrited` 	        |	 `volume__attrited`	                                |
+|	 `avg_net_rev_bps_new` 	                |	 `volume__new`	                                        |
+|	 `avg_net_rev_bps_retained_post` 	|	 `merchant__retained_account_size_post`	                |
+|	 `avg_net_rev_bps_retained_pre` 	|	 `merchant__retained_account_size_pre`	                |
+|	 `avg_new_account_size` 	        |	 `merchant__new`	                                |
+|	 `avg_retained_account_size` 	        |	 `merchant__retained_account_size` 	                |
+|	 `change_in_retained_net_revenue` 	|	 `net_rev__last_year`           	                |
+|	 `change_in_retained_volume` 	        |	 `volume__last_year` 	                                |
+|	 `chargeback_transactions` 	        |	 `transaction`	                                        |
+|	 `chargeback_volume` 	                |	 `volume`	                                        |
+|	 `cost__association__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `cost__association_and_switch_fees` 	|	 `merchant`, `transaction`, `volume`	                |
+|	 `cost__interchange__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `cost__other__fees` 	                |	 `merchant`, `transaction`, `volume`	                |
+|	 `cost__other` 	                        |	 `merchant`, `transaction`, `volume`	                |
+|	 `cost__processing` 	                |	 `merchant`, `transaction`, `volume`	                |
+|	 `cost__residuals` 	                |	 `merchant`, `transaction`, `volume`	                |
+|	 `cost__switch_fees` 	                |	 `merchant`, `transaction`, `volume`	                |
+|	 `cost__total` 	                        |	 `merchant`, `transaction`, `volume`	                |
+|	 `gross_net_revenue_attrited` 	        |	 `net_rev__last_year`	                                |       
+|	 `gross_volume_attrited` 	        |	 `volume__last_year` 	                                |
+|	 `net_revenue_net_attrition` 	        |	 `net_rev__last_year`	                                |
+|	 `new_gross_volume` 	                |	 `volume__last_year` 	                                |
+|	 `new_merchant_count` 	                |	 `merchant__last_year` 	                                |
+|	 `new_net_revenue` 	                |	 `net_rev__last_year`	                                |
+|	 `rev__1099_reporting_annual_fees` 	|	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__1099_reporting_monthly_fees` 	|	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__account_fees_annual_and_monthly`	|	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__account_fees_annual` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__account_fees_monthly` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__discount` 	                |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__equipment_and_other` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__gross_processing` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__gross_profit` 	                |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__gross` 	                        |	 `merchant`, `transaction`, `volume`, `unscaled` 	|
+|	 `rev__insurance_annual_fees` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__insurance_monthly_fees` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__legacy_account_annual_fees` 	|	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__legacy_account_monthly_fees` 	|	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__net_processing` 	                |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__net` 	                        |	 `merchant`, `transaction`, `volume`, `unscaled` 	|
+|	 `rev__other__fees` 	                |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__pci__annual__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__pci__monthly__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `rev__transaction__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
+|	 `volume__bank_cards` 	                |	 `volume`	                                        |
+|	 `volume__credit` 	                |	 `volume`	                                        |
+|	 `volume__opt_blue` 	                |	 `volume`	                                        |
+|	 `volume__other_cards` 	                |	 `volume`	                                        |
+|	 `volume__pin_debit` 	                |	 `volume`	                                        |
+|	 `volume__sig_debit` 	                |	 `volume`	                                        |
+|	 `volume_net_attrition` 	        |	 `volume__last_year` 	                                |
+|	 `volume` 	                        |	 `merchant`, `transaction`, `unscaled`	                |
+				
+
+</details> 
+
 
 <footer><p style='text-align:center'>© The Strawhecker Group. All Rights Reserved.</p></footer>
 
