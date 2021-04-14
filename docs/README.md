@@ -77,7 +77,6 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 <code class="warehouse-url"></code>
 
-
 ### Quickstart
 
 After [acquiring an ID Token](#obtain-an-id-token), start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration purposes only and do not represent real values.
@@ -686,4 +685,3 @@ Volume - Units in dollars.
 <footer><p style='text-align:center'>© The Strawhecker Group. All Rights Reserved.</p></footer>
 
 <script src="./README.js"></script>
-
