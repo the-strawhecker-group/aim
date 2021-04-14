@@ -618,7 +618,7 @@ Volume - Units in dollars.
 
 </details>
 
-<details markdown='1'><summary>Metrics and their Normalizations</summary>
+<details markdown='1'><summary>Metrics and supported Normalizations</summary>
 
 |                   metric                      |               supported normalizations                        |
 |:----------------------------------------------|:--------------------------------------------------------------|    
