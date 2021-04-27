@@ -92,7 +92,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 # Let's run a query to pull out volume data:
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2018-01"
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01;portfolio=-1"
 # [
 #   {
 #     "volume":12864.75939
@@ -101,7 +101,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 # By default, calculations are "Per Merchant", but another normalization can be selected. Let's try some different metrics with "Per Transaction"
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2018-01&normalization=transaction"
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01;portfolio=-1&normalizations=transaction"
 # [
 #   {
 #     "volume": 73.43840
@@ -110,7 +110,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 # In addition to filtering by a specific month, a range can be provided. Once a date range has been specified, it can be "grouped" so the result set contains the average for each month, instead of the average across the months:
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2018-01,2018-03&group_by=date"
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01,2018-03;portfolio=-1&group_by=date"
 # [
 #   {
 #     "date": "2018-01-01",
@@ -128,7 +128,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 # Now, let's see the volume for credit and sig debit:
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2018-01;card=credit,sig_debit&group_by=card"
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01;portfolio=-1;card=credit,sig_debit&group_by=card"
 # [
 #  {
 #    "card": "credit",
@@ -142,7 +142,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 # How about focused on Omaha, Iowa, Kansas, and Missouri?
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2018-01;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=card"
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01;portfolio=-1;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=card"
 # [
 #   {
 #     "card": "credit",
@@ -156,7 +156,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 # Putting these examples together, one can see metrics per transaction in specific states grouped by card and date.
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2018-01,2018-03;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=date,card&normalization=transaction"
+        "$BASE_URL/query?metrics=volume&filter=date=2018-01,2018-03;portfolio=-1;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=date,card&normalizations=transaction"
 # [
 #   {
 #     "card": "credit",
