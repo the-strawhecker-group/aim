@@ -116,6 +116,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 #    "volume": 12903.352
 #   }
 # ]
+
 # By default, calculations are "Per Merchant", but another normalization can be selected. Let's try some different metrics with "Per Transaction"
 # Example with market benchmark
 
@@ -194,6 +195,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 # ]
 
 # In addition to filtering by a specific month, a range can be provided. Once a date range has been specified, it can be "grouped" so the result set contains the average for each month, instead of the average across the months:
+
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01,2020-03;portfolio=-1&group_by=date"
 # [
@@ -212,6 +214,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 # ]
 
 # Now, let's see the volume for credit and sig debit:
+
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-1;card=credit,sig_debit&group_by=card"
 # [
@@ -226,6 +229,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 #]
 
 # How about focused on Omaha, Iowa, Kansas, and Missouri?
+
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-1;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=card"
 # [
@@ -240,6 +244,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 # ]
 
 # Putting these examples together, one can see metrics per transaction in specific states grouped by card and date.
+
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01,2020-03;portfolio=-1;card=credit,sig_debit;state=MO,KS,NE,IA&group_by=date,card&normalizations=transaction"
 # [
