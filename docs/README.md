@@ -77,13 +77,16 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 <code class="warehouse-url"></code>
 
+
+### Important
+
+1) The portfolio is a required parameter to be pass with every API request.
+2) You can toggle between the market benchmark and the fluid benchmark by setting portfolio=-1 for the market benchmark and portfolio=-2 for the fluid benchmark.
+
+
 ### Quickstart
 
 After [acquiring an ID Token](#obtain-an-id-token), start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration purposes only and do not represent real values.
-
-###Important
-1)The portfolio is a required parameter to be pass with every API request.
-2) You can toggle between the market benchmark and the fluid benchmark by setting portfolio=-1 for the market benchmark and portfolio=-2 for the fluid benchmark.
 
 ```
 # Inspect all attributes. Note the rich metadata describing the data type, filter config and values, among other things. These attributes determine how the data can be filtered and grouped.
@@ -131,6 +134,62 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 [
   {
     "volume": 103.352
+  }
+]
+
+
+# You can also pass your portfolio id with the market benchmark and the fluid benchmark value and group by portfolio to see the desired result.
+ 
+# Note: Benchmark(s) cannot be selected with other portfolios without 'Group by Portfolio'
+
+With Market Benchmark
+curl -H "Authorization: Bearer $ID_TOKEN" \
+        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-1,{your portfolio id}&group_by=portfolio&normalizations=transaction"
+ 
+[
+  {
+    "portfolio": {your portfolio id},
+    "volume": 79.195
+  },
+  {
+    "portfolio": -1,
+    "volume": 102.963
+  }
+]
+ 
+With Fluid Benchmark
+ 
+curl -H "Authorization: Bearer $ID_TOKEN" \
+        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2,{your portfolio id}&group_by=portfolio&normalizations=transaction"                                                                                                                                                                                                                                                                                                           
+ 
+[
+  {
+    "portfolio": {your portfolio id},
+    "volume": 79.195
+  },
+  {
+    "portfolio": -2,
+    "volume": 103.352
+  }
+]
+ 
+With Market and Fluid Benchmark
+ 
+curl -H "Authorization: Bearer $ID_TOKEN" \
+        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2,-1,{your portfolio id}&group_by=portfolio&normalizations=transaction"
+ 
+[
+  {
+    "portfolio": -2,
+    "volume": 103.352
+  },
+  {
+    "portfolio": {your portfolio id},
+    "volume": 79.195
+  },
+  {
+    "portfolio": -1,
+    "volume": 102.963
   }
 ]
 
