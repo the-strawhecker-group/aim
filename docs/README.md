@@ -98,6 +98,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/metric/"
 
 # Let's run a query to pull out volume data:
+
 # Example with market benchmark
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-1"
@@ -118,8 +119,8 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 # ]
 
 # By default, calculations are "Per Merchant", but another normalization can be selected. Let's try some different metrics with "Per Transaction"
-# Example with market benchmark
 
+# Example with market benchmark
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-1&normalizations=transaction"
 # [
