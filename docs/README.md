@@ -111,11 +111,11 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2"
  
-[
-  {
-    "volume": 12903.352
-  }
-]
+# [
+#   {
+#    "volume": 12903.352
+#   }
+# ]
 # By default, calculations are "Per Merchant", but another normalization can be selected. Let's try some different metrics with "Per Transaction"
 # Example with market benchmark
 
@@ -131,67 +131,67 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2&normalizations=transaction"
  
-[
-  {
-    "volume": 103.352
-  }
-]
+# [
+#   {
+#     "volume": 103.352
+#   }
+# ]
 
 
 # You can also pass your portfolio id with the market benchmark and the fluid benchmark value and group by portfolio to see the desired result.
  
 # Note: Benchmark(s) cannot be selected with other portfolios without 'Group by Portfolio'
 
-With Market Benchmark
+# Example with Market Benchmark
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-1,{your portfolio id}&group_by=portfolio&normalizations=transaction"
  
-[
-  {
-    "portfolio": {your portfolio id},
-    "volume": 79.195
-  },
-  {
-    "portfolio": -1,
-    "volume": 102.963
-  }
-]
+# [
+#   {
+#     "portfolio": {your portfolio id},
+#     "volume": 79.195
+#   },
+#   {
+#     "portfolio": -1,
+#     "volume": 102.963
+#   }
+# ]
  
-With Fluid Benchmark
+# Example with Fluid Benchmark
  
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2,{your portfolio id}&group_by=portfolio&normalizations=transaction"                                                                                                                                                                                                                                                                                                           
+# [
+#   {
+#     "portfolio": {your portfolio id},
+#     "volume": 79.195
+#   },
+#   {
+#     "portfolio": -2,
+#     "volume": 103.352
+#   }
+# ]
  
-[
-  {
-    "portfolio": {your portfolio id},
-    "volume": 79.195
-  },
-  {
-    "portfolio": -2,
-    "volume": 103.352
-  }
-]
- 
-With Market and Fluid Benchmark
+
+# Example with Market and Fluid Benchmark
  
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2,-1,{your portfolio id}&group_by=portfolio&normalizations=transaction"
  
-[
-  {
-    "portfolio": -2,
-    "volume": 103.352
-  },
-  {
-    "portfolio": {your portfolio id},
-    "volume": 79.195
-  },
-  {
-    "portfolio": -1,
-    "volume": 102.963
-  }
-]
+# [
+#   {
+#     "portfolio": -2,
+#     "volume": 103.352
+#   },
+#   {
+#     "portfolio": {your portfolio id},
+#     "volume": 79.195
+#   },
+#   {
+#     "portfolio": -1,
+#     "volume": 102.963
+#   }
+# ]
 
 # In addition to filtering by a specific month, a range can be provided. Once a date range has been specified, it can be "grouped" so the result set contains the average for each month, instead of the average across the months:
 curl -H "Authorization: Bearer $ID_TOKEN" \
