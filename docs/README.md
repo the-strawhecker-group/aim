@@ -6,9 +6,9 @@ The AIM API is in an "beta stage" to gather customer feedback. While in beta, th
 
 TSG reserves the right to determine what constitutes a breaking changes. A definition of "breaking changes" will be made available before formal release.
 
-<details markdown='1'><summary>AIMVision Metrics Definition</summary>
+<details markdown='1'><summary>AIMvision Metrics Definition</summary>
 
-| Metric Category |AIMVision Metric Name | Metric id  | Metric Definition                          |Applicable Card (or Volume) Type          | Normalizations| 
+| Metric Category |AIMvision Metric Name | Metric id  | Metric Definition                          |Applicable Card (or Volume) Type          | Normalizations| 
 |:---------------:|----------------------|:-----------|:-------------------------------------------|:-----------------------------------------|:--------------|
 |	Activity	|	Volume per Merchant	|	volume	|	Measures average account size of total volumes per active merchant	|	Total, Bankcard, PIN Debit, OptBlue, Other	|	Per Merchant	|
 |	Activity	|	Volume per Transaction	|	volume	|	Total volume divided by total transactions	|	Total, Bankcard, PIN Debit, OptBlue, Other, Credit, Signature Debit	|	Per Transaction	|
