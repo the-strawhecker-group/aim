@@ -112,8 +112,7 @@ TSG reserves the right to determine what constitutes a breaking changes. A defin
 |	Attrition	|	Net Revenue BPS on Attrited Accounts	|	avg_net_rev_bps_attrited	|	Gross net revenue attrited divided by gross volume attrited; measures net revenue/pricing on attrited accounts	|	Total	|	Per Attrited Volume	|
 |	Attrition	|	Net Revenue BPS on Retained Accounts (Pre-Change)	|	avg_net_rev_bps_retained_pre	|	Total portfolio net revenue less attrited net revenue divided by total portfolio volume less attrited volume; measures net revenue spread/pricing on retained (non-attrited) accounts prior to their year over year change/growth	|	Total	|	Per Retained Volume Pre-YOY Change	|
 |	Attrition	|	Net Revenue BPS on Retained Accounts (Post-Change)	|	avg_net_rev_bps_retained_post	|	Total retained account net revenue divided by total retained account volumes after the year over year change; measures the net revenue/spread on retained (non-attrited) accounts after the year over year change/growth	|	Total	|	Per Retained Volume Post-YOY Change	|
-|	Growth	|	Net Revenue BPS on New Accounts	|	avg_net_rev_bps_new	|	Total net revenue added from new accounts divided by total volume added from new accounts; measures net revenue/pricing on new accounts	|	Total	|	Per New Volume	|![image](https://user-images.githubusercontent.com/67714113/120382630-7b7ead00-c2e9-11eb-96a9-9fde796c1c77.png)
-
+|	Growth	|	Net Revenue BPS on New Accounts	|	avg_net_rev_bps_new	|	Total net revenue added from new accounts divided by total volume added from new accounts; measures net revenue/pricing on new accounts	|	Total	|	Per New Volume	|
 
 
 </details>
