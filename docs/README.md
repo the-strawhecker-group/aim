@@ -8,8 +8,8 @@ TSG reserves the right to determine what constitutes a breaking changes. A defin
 
 <details markdown='1'><summary>AIMVision Metrics Definition</summary>
 
-| Metric Category |AIMVision Metric Name | Metric id   | Metric Definition                         |Applicable Card (or Volume) Type          | Normalizations    |
-|:---------------:|----------------------|:------------|:------------------------------------------|:-----------------------------------------|:------------------|
+| Metric Category |AIMVision Metric Name | Metric id  | Metric Definition                          |Applicable Card (or Volume) Type          | Normalizations| 
+|:---------------:|----------------------|:-----------|:-------------------------------------------|:-----------------------------------------|:--------------|
 |	Activity	|	Volume per Merchant	|	volume	|	Measures average account size of total volumes per active merchant	|	Total, Bankcard, PIN Debit, OptBlue, Other	|	Per Merchant	|
 |	Activity	|	Volume per Transaction	|	volume	|	Total volume divided by total transactions	|	Total, Bankcard, PIN Debit, OptBlue, Other, Credit, Signature Debit	|	Per Transaction	|
 |	Revenue	|	Total Gross Revenue Charged to Merchant per Volume	|	rev__gross	|	Sum of bankcard, PIN debit and OptBlue gross revenue, total monthly and annual legacy and emerging account fees, total equipment and other income divided by total volume	|	Total	|	Per Volume	|
