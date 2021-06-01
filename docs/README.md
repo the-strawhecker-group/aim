@@ -8,111 +8,113 @@ TSG reserves the right to determine what constitutes a breaking changes. A defin
 
 <details markdown='1'><summary>AIMVision Metrics Definition</summary>
 
-| Metric Category | AIMVision Metric Name | Metric Definition                 |	Commonly Known Term |Applicable Card (or Volume) Type | Normalization Method |
-|:----------------|:----------------------|:----------------------------------|:--------------------|:--------------------------------|:---------------------|
-|  Activity	  |  Volume per Merchant  |Measures average account size of total volumes per active merchant| Average Account Size | Total, Bankcard, PIN Debit, OptBlue, Other | Per Merchant|			
-| Activity	|Volume per Transaction |Total volume divided by total transactions|	Average Ticket, ATS |	Total, Bankcard, PIN Debit, OptBlue, Other, Credit, Signature Debit|	Per Transaction |
-|Revenue|Total Gross Revenue Charged to Merchant per Volume |Sum of bankcard, PIN debit and OptBlue gross revenue, total monthly and annual legacy and emerging account fees, total equipment and other income divided by total volume| Merchant Effective Rate, Price|	Total|	Per Volume|
-|Revenue|Total Gross Revenue Charged to Merchant per Merchant|	Sum of bankcard, PIN debit and OptBlue gross revenue, total monthly and annual legacy and emerging account fees, total equipment and other income divided by total active merchants|Merchant Effective Rate, Price|Total|Per Merchant|
-|Revenue|Total Gross Revenue Charged to Merchant per Transaction|Sum of bankcard, PIN debit and OptBlue gross revenue, total monthly and annual legacy and emerging account fees, total equipment and other income divided by total transactions|Merchant Effective Rate, Price|Total|Per Transaction|
-|COS|Total Cost of Sales per Volume|Sum of bankcard, PIN debit and OptBlue total cost of sales and total other cost of sales divided by total volume|Acquirer's Cost from Networks|Total|Per Volume|
-|COS|Total Cost of Sales per Merchant|Sum of bankcard, PIN debit and OptBlue total cost of sales and total other cost of sales divided by total active merchants|Acquirer's Cost from Networks|Total|Per Merchant|
-|COS|Total Cost of Sales per Transaction|Sum of bankcard, PIN debit and OptBlue total cost of sales and total other cost of sales divided by total transactions|Acquirer's Cost from Networks|	Total |Per Transaction|
-|Revenue|Net Revenue per Volume|Total gross revenue charged to merchant less total cost of sales divided by total volume|Net Spread|Total|Per Volume|
-|Revenue|Net Revenue per Merchant|Total gross revenue charged to merchant less total cost of sales divided by total active merchants|Net Spread|Total|Per Merchant|
-|Revenue|Net Revenue per Transaction|Total gross revenue charged to merchant less total cost of sales divided by total transactions|Net Spread|Total|Per Transaction|
-|Revenue|Discount Revenue per Volume|Sum of discount revenue divided by volume for applicable card type|% of Transaction Value|Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit|Per Volume|
-|Revenue|Transaction Fee Revenue per Volume|Sum of transaction fee revenue divided by volume for applicable card type|per Item Fee|Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit|Per Volume|
-|Revenue|Other Processing Fee Revenue per Volume|Sum of other fee revenue divided by volume for applicable card type|Processing revenue not included in discount or transaction fee|Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit|Per Volume|
-|Revenue|Gross Processing Revenue per Volume|Sum of discount, transaction fee revenue and other fee revenue divided by volume for applicable card type|Revenue that is determined by volume/transactions processed including cost recovery|Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit|Per Volume|
-|	COS	|	 COS Interchange Fees per Volume	|	Sum of interchange fees divided by volume for applicable card type	|	Fees passed through to the card issuer	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
-|	COS	|	 COS Association Fees & Assessments Fees per Volume	|	Sum of association fees & assessments divided by volume for applicable card type	|	Fees and Assessments paid to Network Brands	|	Bankcard, OptBlue, Credit, Signature Debit	|	Per Volume	|
-|	COS	|	COS SWITCH Fees per Volume	|	Sum of PIN COS SWITCH fees divided by PIN volume	|	Fees and Assessments paid to PIN Network Brands	|	PIN Debit	|	Per Volume	|
-|	COS	|	 COS Association Fees & Assessments & SWITCH Fees per Volume	|	Sum of association fees & assessments and SWITCH fees divided by volume for applicable card type	|	Fees and Assessments paid to All Network Brands	|	Total	|	Per Volume	|
-|	COS	|	 COS Other Processing Fees per Volume	|	Sum of COS other processing fees divided by volume for applicable card type	|	Fees paid not included in Interchange, Association Fees, or SWITCH Fees	|	Total, Bankcard, OptBlue, Credit, Signature Debit	|	Per Volume	|
-|	COS	|	COS Total Processing Fees per Volume	|	Sum of interchange, association and assessment fees, SWITCH fees, and COS other processing fees divided by volume for applicable card type	|	Fees and Assessments paid determined by volume/transactions processed	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
-|	Revenue	|	 Net Processing Revenue per Volume	|	Gross processing revenue cos total processing fees divided by volume for applicable card type	|	DIA (Discount plus transaction fees less Interchange and Assessments), Margin above Interchange or Cost	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
-|	Revenue	|	 Discount Revenue per Merchant	|	Sum of discount revenue divided by active merchants for applicable card type	|	% of Transaction Value	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
-|	Revenue	|	 Transaction Fee Revenue per Merchant	|	Sum of transaction fee revenue divided by active merchants for applicable card type	|	per Item Fee	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
-|	Revenue	|	 Other Processing Fee Revenue per Merchant	|	Sum of other fee revenue divided by active merchants for applicable card type	|	Processing revenue not included in discount or transaction fee	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
-|	Revenue	|	 Gross Processing Revenue per Merchant	|	Sum of discount, transaction fee revenue and other fee revenue divided by active merchants for applicable card type	|	Revenue that is determined by volume/transactions processed including cost recovery	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
-|	COS	|	 COS Interchange Fees per Merchant	|	Sum of interchange fees divided by active merchants for applicable card type	|	Fees passed through to the card issuer	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
-|	COS	|	 COS Association Fees & Assessments Fees per Merchant	|	Sum of association fees & assessments divided by active merchants for applicable card type	|	Fees and Assessments paid to Network Brands	|	Total, Bankcard	|	Per Merchant	|
-|	COS	|	COS SWITCH Fees per Merchant	|	Sum of PIN COS SWITCH fees divided by PIN active merchants	|	Fees and Assessments paid to PIN Network Brands	|	PIN Debit	|	Per Merchant	|
-|	COS	|	 COS Association Fees & Assessments & SWITCH Fees per Merchant	|	Sum of association fees & assessments and SWITCH fees divided by active merchants for applicable card type	|	Fees and Assessments paid to All Network Brands	|	Total	|	Per Merchant	|
-|	COS	|	 COS Other Processing Fees per Merchant	|	Sum of COS other processing fees divided by active merchants for applicable card type	|	Fees paid not included in Interchange, Association Fees, or SWITCH Fees	|	Total, Bankcard	|	Per Merchant	|
-|	COS	|	COS Total Processing Fees per Merchant	|	Sum of interchange, association and assessment fees, SWITCH fees, and COS processing other fees divided by active merchants for applicable card type	|	Fees and Assessments paid determined by volume/transactions processed	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
-|	Revenue	|	 Net Processing Revenue per Merchant	|	Gross processing revenue less cos total processing fees divided by active merchants for applicable card type	|	DIA (Discount plus transaction fees less Interchange and Assessments), Margin above Interchange or Cost	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
-|	Revenue	|	 Discount Revenue per Transaction	|	Sum of discount revenue divided by transactions for applicable card type	|	% of Transaction Value	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	Revenue	|	 Transaction Fee Revenue per Transaction	|	Sum of transaction fee revenue divided by transactions for applicable card type	|	per Item Fee	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	Revenue	|	 Other Processing Fee Revenue per Transaction	|	Sum of other fee revenue divided by transactions for applicable card type	|	Processing revenue not included in discount or transaction fee	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	Revenue	|	 Gross Processing Revenue per Transaction	|	Sum of discount, transaction fee revenue and other fee revenue divided by transactions for applicable card type	|	Revenue that is determined by volume/transactions processed including cost recovery	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	COS	|	 COS Interchange Fees per Transaction	|	Sum of interchange fees divided by transactions for applicable card type	|	Fees passed through to the card issuer	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	COS	|	 COS Association Fees & Assessments Fees per Transaction	|	Sum of association fees & assessments divided by transactions for applicable card type	|	Fees and Assessments paid to Network Brands	|	Total, Bankcard, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	COS	|	COS SWITCH Fees per Transaction	|	Sum of PIN COS SWITCH fees divided by PIN transactions	|	Fees and Assessments paid to PIN Network Brands	|	PIN Debit	|	Per Transaction	|
-|	COS	|	 COS Association Fees & Assessments & SWITCH Fees per Transaction	|	Sum of association fees & assessments and SWITCH fees divided by transactions for applicable card type	|	Fees and Assessments paid to All Network Brands	|	Total	|	Per Transaction	|
-|	COS	|	 COS Other Processing Fees per Transaction	|	Sum of COS other processing fees divided by transactions for applicable card type	|	Fees paid not included in Interchange, Association Fees, or SWITCH Fees	|	Total, Bankcard, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	COS	|	COS Total Processing Fees per Transaction	|	Sum of total interchange, association and assessment fees, SWITCH fees, and COS other processing fees divided by transactions for applicable card type	|	Fees and Assessments paid determined by volume/transactions processed	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	Revenue	|	 Net Processing Revenue per Transaction	|	Gross processing revenue less cos total processing fees divided by transactions for applicable card type	|	DIA (Discount plus transaction fees less Interchange and Assessments), Margin above Interchange or Cost	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
-|	Revenue	|	Monthly Legacy Account Fee Revenue per Volume	|	Account related fees charged monthly; including minimums, monthly account fee, statement fee, divided by total volume	|	Monthly Fees charged per Account; think traditional account fees	|	Total	|	Per Volume	|
-|	Revenue	|	Annual Legacy Account Fee Revenue per Volume	|	Account related fees charged annually; including minimums, monthly account fee, statement fee, divided by total volume	|	Annual Fees charged per Account; think traditional account fees	|	Total	|	Per Volume	|
-|	Revenue	|	Monthly Insurance Account Fee Revenue per Volume	|	Account related Insurance fees charged monthly divided by total volume	|	Chargeback Insurance	|	Total	|	Per Volume	|
-|	Revenue	|	Annual  Insurance Account Fee Revenue per Volume	|	Account related Insurance fees charged annually divided by total volume	|	Chargeback Insurance	|	Total	|	Per Volume	|
-|	Revenue	|	Monthly PCI Account Fee Revenue per Volume	|	Account related PCI fees charged monthly divided by total volume	|	Includes compliance and non-compliance	|	Total	|	Per Volume	|
-|	Revenue	|	Annual PCI Account Fee Revenue per Volume	|	Account related PCI fees charged annually divided by total volume	|	Includes compliance and non-compliance	|	Total	|	Per Volume	|
-|	Revenue	|	Monthly Govt. Compliance Account Fee Revenue per Volume	|	Account related Government Compliance fees charged monthly divided by total volume	|	1099 Reporting Fees	|	Total	|	Per Volume	|
-|	Revenue	|	Annual Govt. Compliance Account Fee Revenue per Volume	|	Account related Government Compliance fees charged annually divided by total volume	|	1099 Reporting Fees	|	Total	|	Per Volume	|
-|	Revenue	|	Total Monthly Account Fee Revenue per Volume	|	Sum of all monthly account fee revenues divided by total volume	|	Monthly per Account Fees	|	Total	|	Per Volume	|
-|	Revenue	|	Total Annual Account Fee Revenue per Volume	|	Sum of all annual account fee revenues divided by total volume	|	Annual per Account Fees	|	Total	|	Per Volume	|
-|	Revenue	|	Monthly Legacy Account Fee Revenue per Merchant	|	Account related fees charged monthly; including minimums, monthly account fee, statement fee, divided by total active merchants	|	Monthly Fees charged per Account; think traditional account fees	|	Total	|	Per Merchant	|
-|	Revenue	|	Annual Legacy Account Fee Revenue per Merchant	|	Account related fees charged annually; including minimums, monthly account fee, statement fee, divided by total active merchants	|	Annual Fees charged per Account; think traditional account fees	|	Total	|	Per Merchant	|
-|	Revenue	|	Monthly Insurance Account Fee Revenue per Merchant	|	Account related Insurance fees charged monthly divided by total active merchants	|	Chargeback Insurance	|	Total	|	Per Merchant	|
-|	Revenue	|	Annual  Insurance Account Fee Revenue per Merchant	|	Account related Insurance fees charged annually divided by total active merchants	|	Chargeback Insurance	|	Total	|	Per Merchant	|
-|	Revenue	|	Monthly PCI Account Fee Revenue per Merchant	|	Account related PCI fees charged monthly divided by total active merchants	|	Includes compliance and non-compliance	|	Total	|	Per Merchant	|
-|	Revenue	|	Annual PCI Account Fee Revenue per Merchant	|	Account related PCI fees charged annually divided by total active merchants	|	Includes compliance and non-compliance	|	Total	|	Per Merchant	|
-|	Revenue	|	Monthly Govt. Compliance Account Fee Revenue per Merchant	|	Account related Government Compliance fees charged monthly divided by total active merchants	|	1099 Reporting Fees	|	Total	|	Per Merchant	|
-|	Revenue	|	Annual Govt. Compliance Account Fee Revenue per Merchant	|	Account related Government Compliance fees charged annually divided by total active merchants	|	1099 Reporting Fees	|	Total	|	Per Merchant	|
-|	Revenue	|	Total Monthly Account Fee Revenue per Merchant	|	Sum of all monthly account fee revenues divided by total active merchants	|	Monthly per Account Fees	|	Total	|	Per Merchant	|
-|	Revenue	|	Total Annual Account Fee Revenue per Merchant	|	Sum of all annual account fee revenues divided by total active merchants	|	Annual per Account Fees	|	Total	|	Per Merchant	|
-|	Revenue	|	Monthly Legacy Account Fee Revenue per Transaction	|	Account related fees charged monthly; including minimums, monthly account fee, statement fee, divided by total transactions	|	Monthly Fees charged per Account; think traditional account fees	|	Total	|	Per Transaction	|
-|	Revenue	|	Annual Legacy Account Fee Revenue per Transaction	|	Account related fees charged annually; including minimums, monthly account fee, statement fee, divided by total transactions	|	Annual Fees charged per Account; think traditional account fees	|	Total	|	Per Transaction	|
-|	Revenue	|	Monthly Insurance Account Fee Revenue per Transaction	|	Account related Insurance fees charged monthly divided by total transactions	|	Chargeback Insurance	|	Total	|	Per Transaction	|
-|	Revenue	|	Annual  Insurance Account Fee Revenue per Transaction	|	Account related Insurance fees charged annually divided by total transactions	|	Chargeback Insurance	|	Total	|	Per Transaction	|
-|	Revenue	|	Monthly PCI Account Fee Revenue per Transaction	|	Account related PCI fees charged monthly divided by total transactions	|	Includes compliance and non-compliance	|	Total	|	Per Transaction	|
-|	Revenue	|	Annual PCI Account Fee Revenue per Transaction	|	Account related PCI fees charged annually divided by total transactions	|	Includes compliance and non-compliance	|	Total	|	Per Transaction	|
-|	Revenue	|	Monthly Govt. Compliance Account Fee Revenue per Transaction	|	Account related Government Compliance fees charged monthly divided by total transactions	|	1099 Reporting Fees	|	Total	|	Per Transaction	|
-|	Revenue	|	Annual Govt. Compliance Account Fee Revenue per Transaction	|	Account related Government Compliance fees charged annually divided by total transactions	|	1099 Reporting Fees	|	Total	|	Per Transaction	|
-|	Revenue	|	Total Monthly Account Fee Revenue per Transaction	|	Sum of all monthly account fee revenues divided by total transactions	|	Monthly per Account Fees	|	Total	|	Per Transaction	|
-|	Revenue	|	Total Annual Account Fee Revenue per Transaction	|	Sum of all annual account fee revenues divided by total transactions	|	Annual per Account Fees	|	Total	|	Per Transaction	|
-|	Revenue	|	Equipment & Other (Non-Processing) Revenue per Volume	|	Sum of equipment rental, lease and sale and other revenues divided by total volume	|	POS Hardware and Software Revenue	|	Total	|	Per Volume	|
-|	Revenue	|	Equipment & Other (Non-Processing) Revenue per Merchant	|	Sum of equipment rental, lease and sale and other revenues divided by total active merchants	|	POS Hardware and Software Revenue	|	Total	|	Per Merchant	|
-|	Revenue	|	Equipment & Other (Non-Processing) Revenue per Transaction	|	Sum of equipment rental, lease and sale and other revenues divided by total transactions	|	POS Hardware and Software Revenue	|	Total	|	Per Transaction	|
-|	COS	|	Total Other (Non-Processing) COS per Volume	|	Sum of other cost of sales including gateway fees, processor fees and sponsor bank fees divided by total volume	|	Third Party Processing Fees	|	Total	|	Per Volume	|
-|	COS	|	Total Other (Non-Processing) COS per Merchant	|	Sum of other cost of sales including gateway fees, processor fees and sponsor bank fees divided by total active merchants	|	Third Party Processing Fees	|	Total	|	Per Merchant	|
-|	COS	|	Total Other (Non-Processing) COS per Transaction	|	Sum of other cost of sales including gateway fees, processor fees and sponsor bank fees divided by total transactions	|	Third Party Processing Fees	|	Total	|	Per Transaction	|
-|	COS	|	Residuals Paid per Volume	|	Sum of residuals to 1099 agents, agent banks, integrated referral partners, association referral partners and other referral partners divided by total volume	|	Amounts paid to downstream sales and referral partners based on revenue share or other residual formulas	|	Total	|	Per Volume	|
-|	COS	|	Residuals Paid per Merchant	|	Sum of residuals to 1099 agents, agent banks, integrated referral partners, association referral partners and other referral partners divided by total active merchants	|	Amounts paid to downstream sales and referral partners based on revenue share or other residual formulas	|	Total	|	Per Merchant	|
-|	COS	|	Residuals Paid per Transaction	|	Sum of residuals to 1099 agents, agent banks, integrated referral partners, association referral partners and other referral partners divided by total transactions	|	Amounts paid to downstream sales and referral partners based on revenue share or other residual formulas	|	Total	|	Per Transaction	|
-|	Revenue	|	Net Revenue Net of Residuals per Volume	|	Total net revenue less total residuals divided by total volume	|	Gross Profit to the Acquirer	|	Total	|	Per Volume	|
-|	Revenue	|	Net Revenue Net of Residuals per Merchant	|	Total net revenue less total residuals divided by total active merchants	|	Gross Profit to the Acquirer	|	Total	|	Per Merchant	|
-|	Revenue	|	Net Revenue Net of Residuals per Transaction	|	Total net revenue less total residuals divided by total transactions	|	Gross Profit to the Acquirer	|	Total	|	Per Transaction	|
-|	Attrition	|	Account Attrition	|	Total attrited accounts in given period divided by total portfolio active accounts from same period of the prior year	|	Annual Rate of Account Attrition	|	Total	|	Merchant Count of Prior Year	|
-|	Growth	|	New Accounts Added	|	Total new accounts in given period divided by total portfolio accounts from same period of the prior year	|	Annual Rate of New Accounts Added	|	Total	|	Merchant Count of Prior Year	|
-|	Attrition	|	Volume Gross Attrition	|	Total volume of attrited accounts from given period of prior year divided by total portfolio volume from same period of the prior year	|	Annual Rate of Volume Gross Attrition	|	Total	|	Total Volume of Prior Year	|
-|	Attrition	|	Change in Retained Account Volume	|	Annual volume change/growth of retained (non-attrited) accounts for given period divided by total portfolio volume from same period of the prior year	|	Annual Rate of Change in Retained Account Volume	|	Total	|	Total Volume of Prior Year	|
-|	Attrition	|	Volume Net Attrition	|	Sum of volume gross attrition and change in retained account volume divided by total portfolio volume from same period of the prior year	|	Annual Rate of Volume Net Attrition	|	Total	|	Total Volume of Prior Year	|
-|	Growth	|	Volume Added from New Accounts	|	Volume added in current period from new accounts divided by total portfolio volume of same period of the prior year 	|	Annual Rate of Volume Added from New Account	|	Total	|	Total Volume of Prior Year	|
-|	Attrition	|	Net Revenue Gross Attrition	|	Total net revenue of attrited accounts from given period of prior year divided by total portfolio net revenue from same period of the prior year	|	Annual Rate of Net Revenue Gross Attrition	|	Total	|	Total Net Revenue of Prior Year	|
-|	Attrition	|	Change in Retained Account Net Revenue	|	Annual net revenue change/growth of retained (non-attrited) accounts for given period divided by total portfolio net revenue from same period of the prior year	|	Annual Rate of Change in Retained Account Net Revenue	|	Total	|	Total Net Revenue of Prior Year	|
-|	Attrition	|	Net Revenue Net Attrition	|	Sum of net revenue gross attrition and change in retained account net revenue divided by total portfolio net revenue from same period of the prior year	|	Annual Rate of Net Revenue Net Attrition	|	Total	|	Total Net Revenue of Prior Year	|
-|	Growth	|	Net Revenue Added from New Accounts	|	Net revenue added in current period from new accounts divided by total portfolio net revenue of same period of the prior year 	|	Annual Rate of Net Revenue Added from New Accounts	|	Total	|	Total Net Revenue of Prior Year	|
-|	Attrition	|	Average Attrited Account Size	|	Sum of volume gross attrition divided by sum of attrited merchants for given time period; measures size of attriting accounts	|		|	Total	|	Per Attrited Merchant	|
-|	Attrition	|	Average Retained Account Size	|	Total portfolio volume less attrited volume (volume gross attrition) divided by total portfolio accounts less attrited accounts (account attrition); measures size of retained (non-attrited) accounts	|		|	Total	|	Per Retained Merchant	|
-|	Growth	|	Average New Account Size	|	Total volume added from new accounts divided by total new accounts; measures size of new accounts	|		|	Total	|	Per New Merchant	|
-|	Attrition	|	Net Revenue BPS on Attrited Accounts	|	Gross net revenue attrited divided by gross volume attrited; measures net revenue/pricing on attrited accounts	|		|	Total	|	Per Attrited Volume	|
-|	Attrition	|	Net Revenue BPS on Retained Accounts (Pre-Change)	|	Total portfolio net revenue less attrited net revenue divided by total portfolio volume less attrited volume; measures net revenue spread/pricing on retained (non-attrited) accounts prior to their year over year change/growth	|		|	Total	|	Per Retained Volume Pre-YOY Change	|
-|	Attrition	|	Net Revenue BPS on Retained Accounts (Post-Change)	|	Total retained account net revenue divided by total retained account volumes after the year over year change; measures the net revenue/spread on retained (non-attrited) accounts after the year over year change/growth	|		|	Total	|	Per Retained Volume Post-YOY Change	|
-|	Growth	|	Net Revenue BPS on New Accounts	|	Total net revenue added from new accounts divided by total volume added from new accounts; measures net revenue/pricing on new accounts	|	Net Revenue Spread for New Accounts Added	|	Total	|	Per New Volume	|
+| Metric Category |AIMVision Metric Name | Metric Definition                 | Applicable Card (or Volume) Type | Normalizations |
+|:---------------:|----------------------|:----------------------------------|:---------------------------------|:---------------|
+|	Activity	|	Volume per Merchant	|	Measures average account size of total volumes per active merchant	|	Total, Bankcard, PIN Debit, OptBlue, Other	|	Per Merchant	|
+|	Activity	|	Volume per Transaction	|	Total volume divided by total transactions	|	Total, Bankcard, PIN Debit, OptBlue, Other, Credit, Signature Debit	|	Per Transaction	|
+|	Revenue	|	Total Gross Revenue Charged to Merchant per Volume	|	Sum of bankcard, PIN debit and OptBlue gross revenue, total monthly and annual legacy and emerging account fees, total equipment and other income divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Total Gross Revenue Charged to Merchant per Merchant	|	Sum of bankcard, PIN debit and OptBlue gross revenue, total monthly and annual legacy and emerging account fees, total equipment and other income divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Total Gross Revenue Charged to Merchant per Transaction	|	Sum of bankcard, PIN debit and OptBlue gross revenue, total monthly and annual legacy and emerging account fees, total equipment and other income divided by total transactions	|	Total	|	Per Transaction	|
+|	COS	|	Total Cost of Sales per Volume	|	Sum of bankcard, PIN debit and OptBlue total cost of sales and total other cost of sales divided by total volume	|	Total	|	Per Volume	|
+|	COS	|	Total Cost of Sales per Merchant	|	Sum of bankcard, PIN debit and OptBlue total cost of sales and total other cost of sales divided by total active merchants	|	Total	|	Per Merchant	|
+|	COS	|	Total Cost of Sales per Transaction	|	Sum of bankcard, PIN debit and OptBlue total cost of sales and total other cost of sales divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Net Revenue per Volume	|	Total gross revenue charged to merchant less total cost of sales divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Net Revenue per Merchant	|	Total gross revenue charged to merchant less total cost of sales divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Net Revenue per Transaction	|	Total gross revenue charged to merchant less total cost of sales divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	 Discount Revenue per Volume	|	Sum of discount revenue divided by volume for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	Revenue	|	 Transaction Fee Revenue per Volume	|	Sum of transaction fee revenue divided by volume for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	Revenue	|	 Other Processing Fee Revenue per Volume	|	Sum of other fee revenue divided by volume for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	Revenue	|	 Gross Processing Revenue per Volume	|	Sum of discount, transaction fee revenue and other fee revenue divided by volume for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	COS	|	 COS Interchange Fees per Volume	|	Sum of interchange fees divided by volume for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	COS	|	 COS Association Fees & Assessments Fees per Volume	|	Sum of association fees & assessments divided by volume for applicable card type	|	Bankcard, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	COS	|	COS SWITCH Fees per Volume	|	Sum of PIN COS SWITCH fees divided by PIN volume	|	PIN Debit	|	Per Volume	|
+|	COS	|	 COS Association Fees & Assessments & SWITCH Fees per Volume	|	Sum of association fees & assessments and SWITCH fees divided by volume for applicable card type	|	Total	|	Per Volume	|
+|	COS	|	 COS Other Processing Fees per Volume	|	Sum of COS other processing fees divided by volume for applicable card type	|	Total, Bankcard, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	COS	|	COS Total Processing Fees per Volume	|	Sum of interchange, association and assessment fees, SWITCH fees, and COS other processing fees divided by volume for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	Revenue	|	 Net Processing Revenue per Volume	|	Gross processing revenue cos total processing fees divided by volume for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Volume	|
+|	Revenue	|	 Discount Revenue per Merchant	|	Sum of discount revenue divided by active merchants for applicable card type	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
+|	Revenue	|	 Transaction Fee Revenue per Merchant	|	Sum of transaction fee revenue divided by active merchants for applicable card type	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
+|	Revenue	|	 Other Processing Fee Revenue per Merchant	|	Sum of other fee revenue divided by active merchants for applicable card type	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
+|	Revenue	|	 Gross Processing Revenue per Merchant	|	Sum of discount, transaction fee revenue and other fee revenue divided by active merchants for applicable card type	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
+|	COS	|	 COS Interchange Fees per Merchant	|	Sum of interchange fees divided by active merchants for applicable card type	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
+|	COS	|	 COS Association Fees & Assessments Fees per Merchant	|	Sum of association fees & assessments divided by active merchants for applicable card type	|	Total, Bankcard	|	Per Merchant	|
+|	COS	|	COS SWITCH Fees per Merchant	|	Sum of PIN COS SWITCH fees divided by PIN active merchants	|	PIN Debit	|	Per Merchant	|
+|	COS	|	 COS Association Fees & Assessments & SWITCH Fees per Merchant	|	Sum of association fees & assessments and SWITCH fees divided by active merchants for applicable card type	|	Total	|	Per Merchant	|
+|	COS	|	 COS Other Processing Fees per Merchant	|	Sum of COS other processing fees divided by active merchants for applicable card type	|	Total, Bankcard	|	Per Merchant	|
+|	COS	|	COS Total Processing Fees per Merchant	|	Sum of interchange, association and assessment fees, SWITCH fees, and COS processing other fees divided by active merchants for applicable card type	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
+|	Revenue	|	 Net Processing Revenue per Merchant	|	Gross processing revenue less cos total processing fees divided by active merchants for applicable card type	|	Total, Bankcard, PIN Debit	|	Per Merchant	|
+|	Revenue	|	 Discount Revenue per Transaction	|	Sum of discount revenue divided by transactions for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	Revenue	|	 Transaction Fee Revenue per Transaction	|	Sum of transaction fee revenue divided by transactions for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	Revenue	|	 Other Processing Fee Revenue per Transaction	|	Sum of other fee revenue divided by transactions for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	Revenue	|	 Gross Processing Revenue per Transaction	|	Sum of discount, transaction fee revenue and other fee revenue divided by transactions for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	COS	|	 COS Interchange Fees per Transaction	|	Sum of interchange fees divided by transactions for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	COS	|	 COS Association Fees & Assessments Fees per Transaction	|	Sum of association fees & assessments divided by transactions for applicable card type	|	Total, Bankcard, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	COS	|	COS SWITCH Fees per Transaction	|	Sum of PIN COS SWITCH fees divided by PIN transactions	|	PIN Debit	|	Per Transaction	|
+|	COS	|	 COS Association Fees & Assessments & SWITCH Fees per Transaction	|	Sum of association fees & assessments and SWITCH fees divided by transactions for applicable card type	|	Total	|	Per Transaction	|
+|	COS	|	 COS Other Processing Fees per Transaction	|	Sum of COS other processing fees divided by transactions for applicable card type	|	Total, Bankcard, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	COS	|	COS Total Processing Fees per Transaction	|	Sum of total interchange, association and assessment fees, SWITCH fees, and COS other processing fees divided by transactions for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	Revenue	|	 Net Processing Revenue per Transaction	|	Gross processing revenue less cos total processing fees divided by transactions for applicable card type	|	Total, Bankcard, PIN Debit, OptBlue, Credit, Signature Debit	|	Per Transaction	|
+|	Revenue	|	Monthly Legacy Account Fee Revenue per Volume	|	Account related fees charged monthly; including minimums, monthly account fee, statement fee, divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Annual Legacy Account Fee Revenue per Volume	|	Account related fees charged annually; including minimums, monthly account fee, statement fee, divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Monthly Insurance Account Fee Revenue per Volume	|	Account related Insurance fees charged monthly divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Annual  Insurance Account Fee Revenue per Volume	|	Account related Insurance fees charged annually divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Monthly PCI Account Fee Revenue per Volume	|	Account related PCI fees charged monthly divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Annual PCI Account Fee Revenue per Volume	|	Account related PCI fees charged annually divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Monthly Govt. Compliance Account Fee Revenue per Volume	|	Account related Government Compliance fees charged monthly divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Annual Govt. Compliance Account Fee Revenue per Volume	|	Account related Government Compliance fees charged annually divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Total Monthly Account Fee Revenue per Volume	|	Sum of all monthly account fee revenues divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Total Annual Account Fee Revenue per Volume	|	Sum of all annual account fee revenues divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Monthly Legacy Account Fee Revenue per Merchant	|	Account related fees charged monthly; including minimums, monthly account fee, statement fee, divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Annual Legacy Account Fee Revenue per Merchant	|	Account related fees charged annually; including minimums, monthly account fee, statement fee, divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Monthly Insurance Account Fee Revenue per Merchant	|	Account related Insurance fees charged monthly divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Annual  Insurance Account Fee Revenue per Merchant	|	Account related Insurance fees charged annually divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Monthly PCI Account Fee Revenue per Merchant	|	Account related PCI fees charged monthly divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Annual PCI Account Fee Revenue per Merchant	|	Account related PCI fees charged annually divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Monthly Govt. Compliance Account Fee Revenue per Merchant	|	Account related Government Compliance fees charged monthly divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Annual Govt. Compliance Account Fee Revenue per Merchant	|	Account related Government Compliance fees charged annually divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Total Monthly Account Fee Revenue per Merchant	|	Sum of all monthly account fee revenues divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Total Annual Account Fee Revenue per Merchant	|	Sum of all annual account fee revenues divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Monthly Legacy Account Fee Revenue per Transaction	|	Account related fees charged monthly; including minimums, monthly account fee, statement fee, divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Annual Legacy Account Fee Revenue per Transaction	|	Account related fees charged annually; including minimums, monthly account fee, statement fee, divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Monthly Insurance Account Fee Revenue per Transaction	|	Account related Insurance fees charged monthly divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Annual  Insurance Account Fee Revenue per Transaction	|	Account related Insurance fees charged annually divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Monthly PCI Account Fee Revenue per Transaction	|	Account related PCI fees charged monthly divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Annual PCI Account Fee Revenue per Transaction	|	Account related PCI fees charged annually divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Monthly Govt. Compliance Account Fee Revenue per Transaction	|	Account related Government Compliance fees charged monthly divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Annual Govt. Compliance Account Fee Revenue per Transaction	|	Account related Government Compliance fees charged annually divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Total Monthly Account Fee Revenue per Transaction	|	Sum of all monthly account fee revenues divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Total Annual Account Fee Revenue per Transaction	|	Sum of all annual account fee revenues divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Equipment & Other (Non-Processing) Revenue per Volume	|	Sum of equipment rental, lease and sale and other revenues divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Equipment & Other (Non-Processing) Revenue per Merchant	|	Sum of equipment rental, lease and sale and other revenues divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Equipment & Other (Non-Processing) Revenue per Transaction	|	Sum of equipment rental, lease and sale and other revenues divided by total transactions	|	Total	|	Per Transaction	|
+|	COS	|	Total Other (Non-Processing) COS per Volume	|	Sum of other cost of sales including gateway fees, processor fees and sponsor bank fees divided by total volume	|	Total	|	Per Volume	|
+|	COS	|	Total Other (Non-Processing) COS per Merchant	|	Sum of other cost of sales including gateway fees, processor fees and sponsor bank fees divided by total active merchants	|	Total	|	Per Merchant	|
+|	COS	|	Total Other (Non-Processing) COS per Transaction	|	Sum of other cost of sales including gateway fees, processor fees and sponsor bank fees divided by total transactions	|	Total	|	Per Transaction	|
+|	COS	|	Residuals Paid per Volume	|	Sum of residuals to 1099 agents, agent banks, integrated referral partners, association referral partners and other referral partners divided by total volume	|	Total	|	Per Volume	|
+|	COS	|	Residuals Paid per Merchant	|	Sum of residuals to 1099 agents, agent banks, integrated referral partners, association referral partners and other referral partners divided by total active merchants	|	Total	|	Per Merchant	|
+|	COS	|	Residuals Paid per Transaction	|	Sum of residuals to 1099 agents, agent banks, integrated referral partners, association referral partners and other referral partners divided by total transactions	|	Total	|	Per Transaction	|
+|	Revenue	|	Net Revenue Net of Residuals per Volume	|	Total net revenue less total residuals divided by total volume	|	Total	|	Per Volume	|
+|	Revenue	|	Net Revenue Net of Residuals per Merchant	|	Total net revenue less total residuals divided by total active merchants	|	Total	|	Per Merchant	|
+|	Revenue	|	Net Revenue Net of Residuals per Transaction	|	Total net revenue less total residuals divided by total transactions	|	Total	|	Per Transaction	|
+|	Attrition	|	Account Attrition	|	Total attrited accounts in given period divided by total portfolio active accounts from same period of the prior year	|	Total	|	Merchant Count of Prior Year	|
+|	Growth	|	New Accounts Added	|	Total new accounts in given period divided by total portfolio accounts from same period of the prior year	|	Total	|	Merchant Count of Prior Year	|
+|	Attrition	|	Volume Gross Attrition	|	Total volume of attrited accounts from given period of prior year divided by total portfolio volume from same period of the prior year	|	Total	|	Total Volume of Prior Year	|
+|	Attrition	|	Change in Retained Account Volume	|	Annual volume change/growth of retained (non-attrited) accounts for given period divided by total portfolio volume from same period of the prior year	|	Total	|	Total Volume of Prior Year	|
+|	Attrition	|	Volume Net Attrition	|	Sum of volume gross attrition and change in retained account volume divided by total portfolio volume from same period of the prior year	|	Total	|	Total Volume of Prior Year	|
+|	Growth	|	Volume Added from New Accounts	|	Volume added in current period from new accounts divided by total portfolio volume of same period of the prior year 	|	Total	|	Total Volume of Prior Year	|
+|	Attrition	|	Net Revenue Gross Attrition	|	Total net revenue of attrited accounts from given period of prior year divided by total portfolio net revenue from same period of the prior year	|	Total	|	Total Net Revenue of Prior Year	|
+|	Attrition	|	Change in Retained Account Net Revenue	|	Annual net revenue change/growth of retained (non-attrited) accounts for given period divided by total portfolio net revenue from same period of the prior year	|	Total	|	Total Net Revenue of Prior Year	|
+|	Attrition	|	Net Revenue Net Attrition	|	Sum of net revenue gross attrition and change in retained account net revenue divided by total portfolio net revenue from same period of the prior year	|	Total	|	Total Net Revenue of Prior Year	|
+|	Growth	|	Net Revenue Added from New Accounts	|	Net revenue added in current period from new accounts divided by total portfolio net revenue of same period of the prior year 	|	Total	|	Total Net Revenue of Prior Year	|
+|	Attrition	|	Average Attrited Account Size	|	Sum of volume gross attrition divided by sum of attrited merchants for given time period; measures size of attriting accounts	|	Total	|	Per Attrited Merchant	|
+|	Attrition	|	Average Retained Account Size	|	Total portfolio volume less attrited volume (volume gross attrition) divided by total portfolio accounts less attrited accounts (account attrition); measures size of retained (non-attrited) accounts	|	Total	|	Per Retained Merchant	|
+|	Growth	|	Average New Account Size	|	Total volume added from new accounts divided by total new accounts; measures size of new accounts	|	Total	|	Per New Merchant	|
+|	Attrition	|	Net Revenue BPS on Attrited Accounts	|	Gross net revenue attrited divided by gross volume attrited; measures net revenue/pricing on attrited accounts	|	Total	|	Per Attrited Volume	|
+|	Attrition	|	Net Revenue BPS on Retained Accounts (Pre-Change)	|	Total portfolio net revenue less attrited net revenue divided by total portfolio volume less attrited volume; measures net revenue spread/pricing on retained (non-attrited) accounts prior to their year over year change/growth	|	Total	|	Per Retained Volume Pre-YOY Change	|
+|	Attrition	|	Net Revenue BPS on Retained Accounts (Post-Change)	|	Total retained account net revenue divided by total retained account volumes after the year over year change; measures the net revenue/spread on retained (non-attrited) accounts after the year over year change/growth	|	Total	|	Per Retained Volume Post-YOY Change	|
+|	Growth	|	Net Revenue BPS on New Accounts	|	Total net revenue added from new accounts divided by total volume added from new accounts; measures net revenue/pricing on new accounts	|	Total	|	Per New Volume	|
+
+
 
 </details>
 
@@ -818,70 +820,6 @@ Volume - Units in dollars.
 #### Per Merchant - Retained Account Size Post-Change
 
 </details>
-
-<details markdown='1'><summary>Metrics and supported Normalizations</summary>
-
-|                   metric                      |               supported normalizations                        |
-|:----------------------------------------------|:--------------------------------------------------------------|    
-|	 `active_merchant_count` 	        |	 `unscaled` 	                                        |
-|	 `attrited_merchant_count` 	        |	 `merchant__last__year`	                                |
-|	 `avg_attrited_account_size` 	        |	 `merchant__attrited`	                                |
-|	 `avg_net_rev_bps_attrited` 	        |	 `volume__attrited`	                                |
-|	 `avg_net_rev_bps_new` 	                |	 `volume__new`	                                        |
-|	 `avg_net_rev_bps_retained_post` 	|	 `merchant__retained_account_size_post`	                |
-|	 `avg_net_rev_bps_retained_pre` 	|	 `merchant__retained_account_size_pre`	                |
-|	 `avg_new_account_size` 	        |	 `merchant__new`	                                |
-|	 `avg_retained_account_size` 	        |	 `merchant__retained_account_size` 	                |
-|	 `change_in_retained_net_revenue` 	|	 `net_rev__last_year`           	                |
-|	 `change_in_retained_volume` 	        |	 `volume__last_year` 	                                |
-|	 `chargeback_transactions` 	        |	 `transaction`	                                        |
-|	 `chargeback_volume` 	                |	 `volume`	                                        |
-|	 `cost__association__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `cost__association_and_switch_fees` 	|	 `merchant`, `transaction`, `volume`	                |
-|	 `cost__interchange__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `cost__other__fees` 	                |	 `merchant`, `transaction`, `volume`	                |
-|	 `cost__other` 	                        |	 `merchant`, `transaction`, `volume`	                |
-|	 `cost__processing` 	                |	 `merchant`, `transaction`, `volume`	                |
-|	 `cost__residuals` 	                |	 `merchant`, `transaction`, `volume`	                |
-|	 `cost__switch_fees` 	                |	 `merchant`, `transaction`, `volume`	                |
-|	 `cost__total` 	                        |	 `merchant`, `transaction`, `volume`	                |
-|	 `gross_net_revenue_attrited` 	        |	 `net_rev__last_year`	                                |       
-|	 `gross_volume_attrited` 	        |	 `volume__last_year` 	                                |
-|	 `net_revenue_net_attrition` 	        |	 `net_rev__last_year`	                                |
-|	 `new_gross_volume` 	                |	 `volume__last_year` 	                                |
-|	 `new_merchant_count` 	                |	 `merchant__last_year` 	                                |
-|	 `new_net_revenue` 	                |	 `net_rev__last_year`	                                |
-|	 `rev__1099_reporting_annual_fees` 	|	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__1099_reporting_monthly_fees` 	|	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__account_fees_annual_and_monthly`	|	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__account_fees_annual` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__account_fees_monthly` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__discount` 	                |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__equipment_and_other` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__gross_processing` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__gross_profit` 	                |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__gross` 	                        |	 `merchant`, `transaction`, `volume`, `unscaled` 	|
-|	 `rev__insurance_annual_fees` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__insurance_monthly_fees` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__legacy_account_annual_fees` 	|	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__legacy_account_monthly_fees` 	|	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__net_processing` 	                |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__net` 	                        |	 `merchant`, `transaction`, `volume`, `unscaled` 	|
-|	 `rev__other__fees` 	                |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__pci__annual__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__pci__monthly__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `rev__transaction__fees` 	        |	 `merchant`, `transaction`, `volume`	                |
-|	 `volume__bank_cards` 	                |	 `volume`	                                        |
-|	 `volume__credit` 	                |	 `volume`	                                        |
-|	 `volume__opt_blue` 	                |	 `volume`	                                        |
-|	 `volume__other_cards` 	                |	 `volume`	                                        |
-|	 `volume__pin_debit` 	                |	 `volume`	                                        |
-|	 `volume__sig_debit` 	                |	 `volume`	                                        |
-|	 `volume_net_attrition` 	        |	 `volume__last_year` 	                                |
-|	 `volume` 	                        |	 `merchant`, `transaction`, `unscaled`	                |
-				
-
-</details> 
 
 
 <footer><p style='text-align:center'>© The Strawhecker Group. All Rights Reserved.</p></footer>
