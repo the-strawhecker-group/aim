@@ -15,7 +15,7 @@ In order to reduce client coupling, the AIM API provides an API discovery docume
 
 <a class="discovery-config-url"></a>
 
-<pre><code id="discovery-config"></code></pre>
+<pre><code id="discovery-config">https://aim.thestrawgroup.com/api.json</code></pre>
 
 The primary attributes of interest is the `urls` object, which provides static names to full or partial URLs.
 
