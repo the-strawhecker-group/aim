@@ -56,6 +56,19 @@ curl -fsSl -XPOST \
      | jq -r '.id_token'
 ```
 
+Sample example with `python` to consume ID Token Discovery URL and to obtain id_token
+
+```sh
+res = requests.get("https://aim.thestrawgroup.com/api.json").json()
+id_token_url=res["v1"]["urls"]["id_token"]
+body= {
+            "grant_type":"refresh_token",
+            "refresh_token":"Your API Key"
+        }
+access_token=requests.post(id_token_url, data=body).json()
+id_token=access_token["id_token"]
+```
+
 You now have an ID Token that can be used with the AIM API!
 
 ### Abuse and Privacy
