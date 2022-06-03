@@ -670,7 +670,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 **Example request url to pull merchant-level analysis data**
 
-# Net Revenue
+**Net Revenue**
 ```
 
         curl -H "Authorization: Bearer $ID_TOKEN" \
@@ -678,21 +678,21 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
                 metric=rev__net"
 ```
 
-# Net Processing Revenue
+**Net Processing Revenue**
 ```
         curl -H "Authorization: Bearer $ID_TOKEN" \
                 "$BASE_URL/merchant-optimization?industry_group=3,16&volume_tier=7&portfolio=201&       
                 metric=rev__net_processing"
 ```
 
-# Gross Revenue
+**Gross Revenue**
 ```
         curl -H "Authorization: Bearer $ID_TOKEN" \
                 "$BASE_URL/merchant-optimization?industry_group=3,16&volume_tier=7&portfolio=201&       
                 metric=rev__gross"
 ```
 
-# Gross Processing Revenue
+**Gross Processing Revenue**
 ```
 curl -H "Authorization: Bearer $ID_TOKEN" \
                 "$BASE_URL/merchant-optimization?industry_group=3,16&volume_tier=7&portfolio=201&       
