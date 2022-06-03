@@ -634,12 +634,13 @@ Volume - Units in dollars.
 
 The **Merchant-Level Analysis** feature allows the user to pull portfolio- and merchant-specific values and compare to an AIM Market Benchmark assigned by the MCC and Annual Volume Tier associated with the merchant record. The user can select subsegments based on Industry Group and Annual Volume Tier along with the Gross or Net Revenue metric to compare. The user will receive an output with the merchant and Market Benchmark values aligned along with a differential column between the merchant and Market Benchmark metric values. The feature can be used to identify opportunities for repricing actions or client retention efforts.
 
-<details markdown='1'><summary>**Query Parameters necessary to request merchant-level analysis report**</summary>
+#### Query Parameters necessary to request merchant-level analysis report
+<details markdown='1'><summary>List of query parameters</summary>
 
 #### 1.Metric
 
-Below are the possible metrics that can be pass in API. 
-#**Note:**Only one metric can be passed per request.
+Below are the possible metrics that can be pass in API.
+**Note:**Only one metric can be passed per request.
 
 ```
 ===================        ======================  
@@ -668,30 +669,35 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 
 **Example request url to pull merchant-level analysis data**
-```
+
 # Net Revenue
------------------
+```
+
         curl -H "Authorization: Bearer $ID_TOKEN" \
                 "$BASE_URL/merchant-optimization?industry_group=3,16&volume_tier=7&portfolio=201&       
                 metric=rev__net"
+```
 
 # Net Processing Revenue
---------------------------
+```
         curl -H "Authorization: Bearer $ID_TOKEN" \
                 "$BASE_URL/merchant-optimization?industry_group=3,16&volume_tier=7&portfolio=201&       
                 metric=rev__net_processing"
+```
 
 # Gross Revenue
-------------------
+```
         curl -H "Authorization: Bearer $ID_TOKEN" \
                 "$BASE_URL/merchant-optimization?industry_group=3,16&volume_tier=7&portfolio=201&       
                 metric=rev__gross"
+```
 
-#Gross Processing Revenue
----------------------------
+# Gross Processing Revenue
+```
 curl -H "Authorization: Bearer $ID_TOKEN" \
                 "$BASE_URL/merchant-optimization?industry_group=3,16&volume_tier=7&portfolio=201&       
                 metric=rev__gross_processing"
+```
 
 </details>
 
