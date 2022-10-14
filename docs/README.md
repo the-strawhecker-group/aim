@@ -96,6 +96,8 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 <code class="warehouse-url"></code>
 
+![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnXCBUx3nL_MG8kmjIeB7MeGbXMIzL97s92g&usqp=CAU)
+
 
 ### Important
 
