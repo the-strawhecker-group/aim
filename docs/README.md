@@ -99,10 +99,10 @@ Each component has a discovery endpoint to obtain the available items with full 
 ```diff
 - 1) The default for Standalone / Household attribute is changed to [household] from [standalone].
 - 2) "Attrition And Growth Metrics" can not be selected with default Standalone/Household Attribute value as 
-    - household does not support "Attrition And Growth Metrics". To query Attrition And Growth Metrics, 
-    - standalone parameter must be passed with value either all_merchants or standalone]. 
+-     household does not support "Attrition And Growth Metrics". To query Attrition And Growth Metrics, 
+-     standalone parameter must be passed with value either all_merchants or standalone]. 
      
-    +  For example,
++    For example,
      
       curl -H "Authorization: Bearer $ID_TOKEN" \
      "$BASE_URL/query?metrics=gross_volume_attrited&filter=date=2022-07,2022-07;portfolio={your portfolio id}; \
@@ -111,7 +111,7 @@ Each component has a discovery endpoint to obtain the available items with full 
         
 - 3) The portfolio is a required parameter to be pass with every API request.
 - 4) You can toggle between the market benchmark and the fluid benchmark by setting portfolio=-1 for the 
-   - market benchmark and portfolio=-2 for the fluid benchmark.
+-    market benchmark and portfolio=-2 for the fluid benchmark.
 ```
 
 ### Quickstart
