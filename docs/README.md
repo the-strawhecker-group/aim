@@ -6,6 +6,10 @@ The AIM API is in an "beta stage" to gather customer feedback. While in beta, th
 
 TSG reserves the right to determine what constitutes a breaking changes. A definition of "breaking changes" will be made available before formal release.
 
+```diff
++ this text is highlighted in green
+- this text is highlighted in red
+```
 
 # HTTP API
 
