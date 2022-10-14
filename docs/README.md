@@ -91,17 +91,15 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 <code class="warehouse-url"></code>
 
+<!-- ![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGZORV3utLrfbJSDS7iI5AthCt7aihIfkomZtsWIQfgyB5qTZTmyImkXsfCSMZrwXx1do&usqp=CAU)  -->
+
+
+ ### Important Update
 ```diff
-The default for Standalone / Household attribute is changed to household from standalone.
+- 1) The default for Standalone / Household attribute is changed to household from standalone.
+- 2) The portfolio is a required parameter to be pass with every API request.
+- 3) You can toggle between the market benchmark and the fluid benchmark by setting portfolio=-1 for the market benchmark and portfolio=-2 for the fluid benchmark.
 ```
-![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGZORV3utLrfbJSDS7iI5AthCt7aihIfkomZtsWIQfgyB5qTZTmyImkXsfCSMZrwXx1do&usqp=CAU) 
-
-
-### Important
-
-1) The portfolio is a required parameter to be pass with every API request.
-2) You can toggle between the market benchmark and the fluid benchmark by setting portfolio=-1 for the market benchmark and portfolio=-2 for the fluid benchmark.
-
 
 ### Quickstart
 
