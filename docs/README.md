@@ -6,11 +6,6 @@ The AIM API is in an "beta stage" to gather customer feedback. While in beta, th
 
 TSG reserves the right to determine what constitutes a breaking changes. A definition of "breaking changes" will be made available before formal release.
 
-```diff
-+ this text is highlighted in green
-- this text is highlighted in red
-```
-
 # HTTP API
 
 ## API Discovery
@@ -96,8 +91,10 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 <code class="warehouse-url"></code>
 
-![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnXCBUx3nL_MG8kmjIeB7MeGbXMIzL97s92g&usqp=CAU) The default for Standalone / Household attribute is changed to household from standalone.
-
+```diff
+The default for Standalone / Household attribute is changed to household from standalone.
+```
+![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGZORV3utLrfbJSDS7iI5AthCt7aihIfkomZtsWIQfgyB5qTZTmyImkXsfCSMZrwXx1do&usqp=CAU) 
 
 
 ### Important
