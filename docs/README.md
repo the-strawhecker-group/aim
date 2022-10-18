@@ -58,7 +58,7 @@ curl -fsSl -XPOST \
 Sample example with `python` to consume ID Token Discovery URL and to obtain id_token
 
 ```sh
-res = requests.get("https://aim.thestrawgroup.com/api.json").json()
+res=requests.get("https://aim.thestrawgroup.com/api.json").json()
 id_token_url=res["v1"]["urls"]["id_token"]
 BASE_URL=res["v1"]["urls"]["warehouse"]
 body= {
@@ -97,10 +97,14 @@ Each component has a discovery endpoint to obtain the available items with full 
 ### Important Update
 
 ```diff
-- 1) The default for Standalone / Household attribute is changed to [household] from [standalone].
-- 2) "Attrition And Growth Metrics" can not be selected with default Standalone/Household Attribute value as 
+- 1) The default for Standalone / Household attribute is changed to **[household]** from **[standalone]**.
+- 2) **"Attrition And Growth Metrics"** can not be selected with default Standalone/Household Attribute value as 
 -     household does not support "Attrition And Growth Metrics". To query Attrition And Growth Metrics, 
 -     standalone parameter must be passed with value either all_merchants or standalone]. 
+               ## Possible values for **Standalone/Household Attribute** 
+-               **Standalone** – When this option is selected, the metrics calculated at individual store level and only the MIDs that are not part of     -                                chain are used in calculations.
+-               **All Merchants** -  When this option is selected, the metrics are calculated at individual store level and both chained MIDs and non-     -                                chained MIDs are used in calculations.
+-               **Household (default option)**  - When household is selected, the metrics are calculated at Household level, i.e. standalone stores are    -                                considered as a household with one store and chained stores within a chain are combined together and considered as one    -                                single Household.  **NOTE:  Growth/Attrition metrics are not supported with Household option**
      
 +    For example,
      
