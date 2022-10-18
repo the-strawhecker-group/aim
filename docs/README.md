@@ -96,8 +96,8 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 ### Important Update
 
-diff
-```
+
+``` diff
 - 1) The portfolio is a required parameter to be pass with every API request.
 - 2) You can toggle between the market benchmark and the fluid benchmark by setting portfolio=-1 for the 
 -    market benchmark and portfolio=-2 for the fluid benchmark.
@@ -110,13 +110,13 @@ diff
 -               **All Merchants** -  When this option is selected, the metrics are calculated at individual store level and both chained MIDs and non-     -                                chained MIDs are used in calculations.
 -               **Household (default option)**  - When household is selected, the metrics are calculated at Household level, i.e. standalone stores are    -                                considered as a household with one store and chained stores within a chain are combined together and considered as one    -                                single Household.  **NOTE:  Growth/Attrition metrics are not supported with Household option**
 ```     
-##    For example,
-     ```
-      curl -H "Authorization: Bearer $ID_TOKEN" \
-     "$BASE_URL/query?metrics=gross_volume_attrited&filter=date=2022-07,2022-07;portfolio={your portfolio id}; \
-     standalone=all_merchants;industry_group=1,2,3,4,5;region=2,3,4,5,6,7,8,9,10&group_by=date,portfolio& \
-     aggregation=none&normalizations=volume__last_year&baseline=-1"
-     ```   
+                    ####    For example,
+                         ```
+                          curl -H "Authorization: Bearer $ID_TOKEN" \
+                         "$BASE_URL/query?metrics=gross_volume_attrited&filter=date=2022-07,2022-07;portfolio={your portfolio id}; \
+                         standalone=all_merchants;industry_group=1,2,3,4,5;region=2,3,4,5,6,7,8,9,10&group_by=date,portfolio& \
+                         aggregation=none&normalizations=volume__last_year&baseline=-1"
+                         ```   
 
 
 
