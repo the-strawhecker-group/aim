@@ -98,11 +98,11 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 
 ``` diff
-- 1) The portfolio is a required parameter to be pass with every API request.
+  1) The portfolio is a required parameter to be pass with every API request.
 - 2) You can toggle between the market benchmark and the fluid benchmark by setting portfolio=-1 for the 
 -    market benchmark and portfolio=-2 for the fluid benchmark.
 - 3) The default for Standalone / Household attribute is changed to **[household]** from **[standalone]**.
-- 4) **"Attrition And Growth Metrics"** can not be selected with default Standalone/Household Attribute value as 
+  4) **"Attrition And Growth Metrics"** can not be selected with default Standalone/Household Attribute value as 
 -     household does not support "Attrition And Growth Metrics". To query Attrition And Growth Metrics, 
 -     standalone parameter must be passed with value either all_merchants or standalone]. 
 ```
