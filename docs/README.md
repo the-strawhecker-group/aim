@@ -108,12 +108,12 @@ Each component has a discovery endpoint to obtain the available items with full 
 ```
 
    **For example,**
-     ```sh
+```sh
       curl -H "Authorization: Bearer $ID_TOKEN" \
      "$BASE_URL/query?metrics=gross_volume_attrited&filter=date=2022-07,2022-07;portfolio={your portfolio id}; \
      standalone=all_merchants;industry_group=1,2,3,4,5;region=2,3,4,5,6,7,8,9,10&group_by=date,portfolio& \
      aggregation=none&normalizations=volume__last_year&baseline=-1"
-     ```   
+```   
      
 **Possible values for Standalone/Household Attribute** 
 ```sh
@@ -123,7 +123,7 @@ Each component has a discovery endpoint to obtain the available items with full 
                     and both chained MIDs and non-chained MIDs are used in calculations.
       Household (default option)  - When household is selected, the metrics are calculated at Household level,
                     i.e. standalone stores are considered as a household with one store and chained stores 
-                    within a chain are combined together and considered as one single Household.
+                    within a chain are combined together and considered as one single Household.                   
 #NOTE:  Growth/Attrition metrics are not supported with Household option
 ```
 
