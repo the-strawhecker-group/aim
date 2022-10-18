@@ -132,7 +132,7 @@ Each component has a discovery endpoint to obtain the available items with full 
 
 After [acquiring an ID Token](#obtain-an-id-token), start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration purposes only and do not represent real values.
 
-```
+```sh
 # Inspect all attributes. Note the rich metadata describing the data type, filter config and values, among other things. These attributes determine how the data can be filtered and grouped.
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/attribute/"
