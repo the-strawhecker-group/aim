@@ -105,18 +105,26 @@ Each component has a discovery endpoint to obtain the available items with full 
 - 4) **"Attrition And Growth Metrics"** can not be selected with default Standalone/Household Attribute value as 
 -     household does not support "Attrition And Growth Metrics". To query Attrition And Growth Metrics, 
 -     standalone parameter must be passed with value either all_merchants or standalone]. 
-           ** Possible values for Standalone/Household Attribute** 
--               **Standalone** – When this option is selected, the metrics calculated at individual store level and only the MIDs that are not part of     -                                chain are used in calculations.
--               **All Merchants** -  When this option is selected, the metrics are calculated at individual store level and both chained MIDs and non-     -                                chained MIDs are used in calculations.
--               **Household (default option)**  - When household is selected, the metrics are calculated at Household level, i.e. standalone stores are    -                                considered as a household with one store and chained stores within a chain are combined together and considered as one    -                                single Household.  **NOTE:  Growth/Attrition metrics are not supported with Household option**
-```     
-                    ####    For example,
-                         ```
-                          curl -H "Authorization: Bearer $ID_TOKEN" \
-                         "$BASE_URL/query?metrics=gross_volume_attrited&filter=date=2022-07,2022-07;portfolio={your portfolio id}; \
-                         standalone=all_merchants;industry_group=1,2,3,4,5;region=2,3,4,5,6,7,8,9,10&group_by=date,portfolio& \
-                         aggregation=none&normalizations=volume__last_year&baseline=-1"
-                         ```   
+```
+** Possible values for Standalone/Household Attribute ** 
+``` diff
+-               **Standalone** – When this option is selected, the metrics calculated at individual store level and 
+-                                only the MIDs that are not part of chain are used in calculations.
+-               **All Merchants** - When this option is selected, the metrics are calculated at individual store level 
+-                                and both chained MIDs and non-chained MIDs are used in calculations.
+-               **Household (default option)**  - When household is selected, the metrics are calculated at Household level,
+-                                i.e. standalone stores are considered as a household with one store and chained stores 
+-                                within a chain are combined together and considered as one single Household.  
+```
+**NOTE:  Growth/Attrition metrics are not supported with Household option**
+
+**   For example, **
+     ```
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/query?metrics=gross_volume_attrited&filter=date=2022-07,2022-07;portfolio={your portfolio id}; \
+     standalone=all_merchants;industry_group=1,2,3,4,5;region=2,3,4,5,6,7,8,9,10&group_by=date,portfolio& \
+     aggregation=none&normalizations=volume__last_year&baseline=-1"
+     ```   
 
 
 
