@@ -133,11 +133,13 @@ Each component has a discovery endpoint to obtain the available items with full 
 After [acquiring an ID Token](#obtain-an-id-token), start with a few simple API calls. The calls will use `curl` for demonstration, but of course, any HTTP client will do. In these examples, `BASE_URL` is set to <code class="warehouse-url"></code>. Any query results are for demonstration purposes only and do not represent real values.
 
 ```sh
-# Inspect all attributes. Note the rich metadata describing the data type, filter config and values, among other things. These attributes determine how the data can be filtered and grouped.
+# Inspect all attributes. Note the rich metadata describing the data type, filter config and values, among other 
+  things. These attributes determine how the data can be filtered and grouped.
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/attribute/"
 
-# Inspect all metrics. Notice that metrics have "availability" metadata describing what attributes and normalizations they support.
+# Inspect all metrics. Notice that metrics have "availability" metadata describing what attributes and 
+  normalizations they support.
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/metric/"
 
@@ -162,7 +164,8 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 #   }
 # ]
 
-# By default, calculations are "Per Merchant", but another normalization can be selected. Let's try some different metrics with "Per Transaction"
+# By default, calculations are "Per Merchant", but another normalization can be selected. Let's try some 
+  different metrics with "Per Transaction"
 
 # Example with market benchmark
 curl -H "Authorization: Bearer $ID_TOKEN" \
@@ -184,13 +187,15 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 # ]
 
 
-# You can also pass your portfolio id with the market benchmark and the fluid benchmark value and group by portfolio to see the desired result.
+# You can also pass your portfolio id with the market benchmark and the fluid benchmark value and group by portfolio
+  to see the desired result.
  
 # Note: Benchmark(s) cannot be selected with other portfolios without 'Group by Portfolio'
 
 # Example with Market Benchmark
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-1,{your portfolio id}&group_by=portfolio&normalizations=transaction"
+        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-1,{your portfolio id}&group_by=portfolio& \
+        normalizations=transaction"
  
 # [
 #   {
@@ -206,7 +211,8 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 # Example with Fluid Benchmark
  
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2,{your portfolio id}&group_by=portfolio&normalizations=transaction"                                                                                                                                                                                                                                                                                                           
+        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2,{your portfolio id}&group_by=portfolio& \
+        normalizations=transaction"                                                                                                                                                                                                                                                                                                           
 # [
 #   {
 #     "portfolio": {your portfolio id},
@@ -222,7 +228,8 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 # Example with Market and Fluid Benchmark
  
 curl -H "Authorization: Bearer $ID_TOKEN" \
-        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2,-1,{your portfolio id}&group_by=portfolio&normalizations=transaction"
+        "$BASE_URL/query?metrics=volume&filter=date=2020-01;portfolio=-2,-1,{your portfolio id}&group_by=portfolio& \
+        normalizations=transaction"
  
 # [
 #   {
@@ -239,7 +246,8 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 #   }
 # ]
 
-# In addition to filtering by a specific month, a range can be provided. Once a date range has been specified, it can be "grouped" so the result set contains the average for each month, instead of the average across the months:
+# In addition to filtering by a specific month, a range can be provided. Once a date range has been specified, it can
+  be "grouped" so the result set contains the average for each month, instead of the average across the months:
 
 curl -H "Authorization: Bearer $ID_TOKEN" \
         "$BASE_URL/query?metrics=volume&filter=date=2020-01,2020-03;portfolio=-1&group_by=date"
