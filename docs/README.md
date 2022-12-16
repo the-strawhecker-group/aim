@@ -378,6 +378,10 @@ The metrics coming from raw processor data which are reported on individual
 card types may be filtered and grouped by card types and are referred to as
 "card metrics" as opposed to "non-card metrics".
 
+#### Default Values if none is passed as query parameters:
+
+[BANK_CARDS, OPT_BLUE, PIN_DEBIT, OTHER_CARDS]
+
 #### Average Ticket Tier
 
 A merchant's ticket tier is based on its **average** number of transactions (or "tickets")
@@ -391,6 +395,10 @@ A merchant's volume tier is based on its **total** volume over a rolling 12 mont
 #### Region
 
 Geographic region of the transaction.
+
+#### Default Values if none is passed as query parameters:
+
+All Regions included except Canada
     
 
 #### State
@@ -417,6 +425,10 @@ Industry Classification Type. Currently this is either MCC or SIC.
 #### Industry Group
 
 Hierarchical grouping of Industries
+
+#### Default Values if none is passed as query parameters:
+
+All Industry Group included except Higher Risk
     
 
 #### Industry
@@ -437,9 +449,14 @@ application, though other aggregation levels are possible and may show up in the
 future. The term era is used to denote a chunk of time. Ex. The month of June, as
 opposed to June 1.
 
-#### Standalone Merchants
+#### Standalone / Household Merchants
 
 Binary on if the merchant is part of a chain or not.
+
+#### Default Values if none is passed as query parameters:
+
+Default is changed to [household] from [standalone]
+
 
 #### Vintage
 
