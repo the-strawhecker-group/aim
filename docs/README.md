@@ -378,6 +378,11 @@ The metrics coming from raw processor data which are reported on individual
 card types may be filtered and grouped by card types and are referred to as
 "card metrics" as opposed to "non-card metrics".
 
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/card"
+```   
+
 #### Default Values if none is passed as query parameters:
 
 [BANK_CARDS, OPT_BLUE, PIN_DEBIT, OTHER_CARDS]
@@ -387,14 +392,28 @@ card types may be filtered and grouped by card types and are referred to as
 A merchant's ticket tier is based on its **average** number of transactions (or "tickets")
 over a rolling 12 month period.
 
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/average_ticket_tier"
+``` 
+
 #### Annual Volume Tier
 
 A merchant's volume tier is based on its **total** volume over a rolling 12 month period.
-    
+
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/volume_tier"
+```     
 
 #### Region
 
 Geographic region of the transaction.
+
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/region"
+``` 
 
 #### Default Values if none is passed as query parameters:
 
@@ -405,18 +424,36 @@ All Regions included except Canada
 
 U.S. State of the transaction
 
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/state"
+``` 
+
 #### ZIP
 
 Zip code of the transaction
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/zip"
+``` 
 
 #### MSA
 
 City of the transaction
 
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/msa"
+``` 
+
 #### Sales Model
 
 Sales model code
 
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/sales_model_code"
+``` 
 #### Industry Classification Type
 
 Industry Classification Type. Currently this is either MCC or SIC.
@@ -426,6 +463,11 @@ Industry Classification Type. Currently this is either MCC or SIC.
 
 Hierarchical grouping of Industries
 
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/industry_group"
+``` 
+
 #### Default Values if none is passed as query parameters:
 
 All Industry Group included except Higher Risk
@@ -434,12 +476,21 @@ All Industry Group included except Higher Risk
 #### Industry
 
 Industry the merchant belongs to.
+
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/industry"
+``` 
     
 
 #### Portfolio
 
 A grouping of merchants within an organization.
-    
+
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/portfolio"
+```     
 
 #### Data Month
 
@@ -449,9 +500,19 @@ application, though other aggregation levels are possible and may show up in the
 future. The term era is used to denote a chunk of time. Ex. The month of June, as
 opposed to June 1.
 
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/date"
+``` 
+
 #### Standalone / Household Merchants
 
 Binary on if the merchant is part of a chain or not.
+
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/standalone"
+``` 
 
 #### Default Values if none is passed as query parameters:
 
@@ -462,12 +523,21 @@ Default is changed to [household] from [standalone]
 
 Year merchant entered the market
 
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/attribute/vintage"
+``` 
+
 </details>
 
 ### Metrics
 
 Base metric class.
-    
+
+```sh
+      curl -H "Authorization: Bearer $ID_TOKEN" \
+     "$BASE_URL/metric/"
+```     
 
 <details markdown='1'><summary>Metrics</summary>
 
