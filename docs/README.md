@@ -825,6 +825,49 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 </details>
 
+### Revenue Optimizer
+
+Empowering Informed Decisions with Real-time Pricing Insights.
+
+#### Overview
+
+**Revenue Optimizer**, a dynamic pricing tool powered by TSG’s Acquiring Industry Metrics (AIM) platform, represents a cutting-edge solution providing businesses with a competitive edge. It offers real-time pricing data for key metrics, including merchant effective rate, discount rate, per transaction fees, and account fees. Revenue Optimizer empowers organizations and their partners with the benchmarks required to optimize both go-to-market and back-book pricing tactics and support data-driven decision-making.
+
+#### Endpoint
+To access Revenue Optimizer data, you can use the following HTTP request:
+```sh
+        curl -H "Authorization: Bearer $ID_TOKEN" "$BASE_URL/embedded-pricing?metrics=volume,volume,rev__gross,rev__gross_processing,rev__discount,rev__transaction__fees,rev__other__fees,rev__account_fees_annual_and_monthly,rev__equipment_and_other&filter=&normalizations=merchant,transaction,volume,volume,volume,transaction,transaction,merchant,merchant&vintage=N"
+```
+
+#### Parameters
+##### filter: 
+You can apply filters to narrow down the data based on your requirements. If no filter is needed, leave this parameter empty. You can filter by the following criteria:
+
+Volume Tier: Filter data by volume tier.
+Industry Group: Filter data by industry group.
+Industry: Filter data by industry.
+Region: Filter data by region.
+State: Filter data by state.
+Vintage: Filter by “old” and “new”
+
+If no specific filter is required, you may leave the filter parameter empty.
+
+##### Vintage Options
+- `New Vintage` : To focus on newly boarded merchants, select **vintage=N**. This option will include merchants onboarded only in the most recent three years.
+
+- `All Vintage` : To focus on tenured merchants, select **vintage=A** . This options will include vintage years.
+
+##### Volume Tier Options
+
+- By default, if no volume-tier-id is provided as a query parameter, all volume tiers up to $50 million will be used, representing volume-tier IDs 1 to 14.
+
+- To specify a volume tier, you must include the volume-tier-id in the query parameters.
+
+
+#### Conclusion
+**Revenue Optimizer** presents an indispensable tool for accessing and harnessing real-time pricing data for your business and partners. Leverage this robust solution to fine-tune pricing strategies and elevate the precision of financial decision-making within your organization.
+
+
 
 <footer><p style='text-align:center'>© The Strawhecker Group. All Rights Reserved.</p></footer>
 
