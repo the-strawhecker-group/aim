@@ -752,7 +752,7 @@ Volume - Units in dollars.
 
 </details>
 
-### Merchant-Level Analysis
+# Merchant-Level Analysis
 
 The **Merchant-Level Analysis** feature allows the user to pull portfolio- and merchant-specific values and compare to an AIM Market Benchmark assigned by the MCC and Annual Volume Tier associated with the merchant record. The user can select subsegments based on Industry Group and Annual Volume Tier along with the Gross or Net Revenue metric to compare. The user will receive an output with the merchant and Market Benchmark values aligned along with a differential column between the merchant and Market Benchmark metric values. The feature can be used to identify opportunities for repricing actions or client retention efforts.
 
@@ -823,7 +823,7 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 
 </details>
 
-### Revenue Optimizer
+# Revenue Optimizer
 
 Empowering Informed Decisions with Real-time Pricing Insights.
 
@@ -838,6 +838,8 @@ To access Revenue Optimizer data, you can use the following HTTP request:
 ```
 
 #### Parameters
+<details markdown='1'><summary>List of query parameters</summary>
+
 ##### filter: 
 You can apply filters to narrow down the data based on your requirements. If no filter is needed, leave this parameter empty. You can filter by the following criteria:
 
@@ -865,6 +867,7 @@ If no specific filter is required, you may leave the filter parameter empty.
 #### Conclusion
 **Revenue Optimizer** presents an indispensable tool for accessing and harnessing real-time pricing data for your business and partners. Leverage this robust solution to fine-tune pricing strategies and elevate the precision of financial decision-making within your organization.
 
+</details>
 
 
 <footer><p style='text-align:center'>© The Strawhecker Group. All Rights Reserved.</p></footer>
