@@ -1,6 +1,4 @@
-Welcome to the *AIM API - Beta*!
-
-# Beta Stage
+Welcome to the *AIM API*!
 
 The AIM API is in an "beta stage" to gather customer feedback. While in beta, the API may change in backwards incompatible ways to accommodate for fixes and additions. Breaking changes will be communicated to the primary API contact at least 2 business days in advance.
 
