@@ -1,8 +1,8 @@
 Welcome to the *AIM API*!
 
-The AIM API is in an "beta stage" to gather customer feedback. While in beta, the API may change in backwards incompatible ways to accommodate for fixes and additions. Breaking changes will be communicated to the primary API contact at least 2 business days in advance.
+<!-- The AIM API is in an "beta stage" to gather customer feedback. While in beta, the API may change in backwards incompatible ways to accommodate for fixes and additions. Breaking changes will be communicated to the primary API contact at least 2 business days in advance.
 
-TSG reserves the right to determine what constitutes a breaking changes. A definition of "breaking changes" will be made available before formal release.
+TSG reserves the right to determine what constitutes a breaking changes. A definition of "breaking changes" will be made available before formal release. -->
 
 # HTTP API
 
@@ -868,6 +868,9 @@ If no specific filter is required, you may leave the filter parameter empty.
 **Revenue Optimizer** presents an indispensable tool for accessing and harnessing real-time pricing data for your business and partners. Leverage this robust solution to fine-tune pricing strategies and elevate the precision of financial decision-making within your organization.
 
 </details>
+
+
+
 
 
 <footer><p style='text-align:center'>© The Strawhecker Group. All Rights Reserved.</p></footer>
