@@ -852,10 +852,10 @@ Vintage: Filter by “old” and “new”
 
 If no specific filter is required, you may leave the filter parameter empty.
 
-##### Vintage Options
-- `New Vintage` : To focus on newly boarded merchants, select **vintage=N**. This option will include merchants onboarded only in the most recent three years.
+##### Merchant Vintage Options
+- `New Merchants` : To focus on newly boarded merchants, use **vintage=N**. This option will include merchants onboarded only in the most recent three years.
 
-- `All Vintage` : To focus on all merchants, select **vintage=A** . This options will include all vintage years.
+- `All Merchants` : To focus on all merchants, use **vintage=A** . This options will include all vintage years.
 
 ##### Volume Tier Options
 
