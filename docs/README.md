@@ -829,7 +829,7 @@ Empowering Informed Decisions with Real-time Pricing Insights.
 
 #### Overview
 
-**Revenue Optimizer**, a dynamic pricing tool powered by TSG’s Acquiring Industry Metrics (AIM) platform, represents a cutting-edge solution providing businesses with a competitive edge. It offers real-time pricing data for key metrics, including merchant effective rate, discount rate, per transaction fees, and account fees. Revenue Optimizer empowers organizations and their partners with the benchmarks required to optimize both go-to-market and back-book pricing tactics and support data-driven decision-making.
+**Revenue Optimizer (Coming Soon)**, a dynamic pricing tool powered by TSG’s Acquiring Industry Metrics (AIM) platform, represents a cutting-edge solution providing businesses with a competitive edge. It offers real-time pricing data for key metrics, including merchant effective rate, discount rate, per transaction fees, and account fees. Revenue Optimizer empowers organizations and their partners with the benchmarks required to optimize both go-to-market and back-book pricing tactics and support data-driven decision-making.
 
 #### Endpoint
 To access Revenue Optimizer data, you can use the following HTTP request:
