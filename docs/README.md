@@ -824,7 +824,6 @@ curl -H "Authorization: Bearer $ID_TOKEN" \
 </details>
 
 # Revenue Optimizer
-## (Coming Soon)
 
 Empowering Informed Decisions with Real-time Pricing Insights.
 
