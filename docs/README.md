@@ -834,7 +834,7 @@ Empowering Informed Decisions with Real-time Pricing Insights.
 #### Endpoint
 To access Revenue Optimizer data, you can use the following HTTP request:
 ```sh
-        curl -H "Authorization: Bearer $ID_TOKEN" "$BASE_URL/embedded-pricing?metrics=volume,volume,rev__gross,rev__gross_processing,rev__discount,rev__transaction__fees,rev__other__fees,rev__account_fees_annual_and_monthly,rev__equipment_and_other&filter=&normalizations=merchant,transaction,volume,volume,volume,transaction,transaction,merchant,merchant&vintage=N"
+        curl -H "Authorization: Bearer $ID_TOKEN" "$BASE_URL/revenue-optimizer?metrics=volume,volume,rev__gross,rev__gross_processing,rev__discount,rev__transaction__fees,rev__other__fees,rev__account_fees_annual_and_monthly,rev__equipment_and_other&filter=&normalizations=merchant,transaction,volume,volume,volume,transaction,transaction,merchant,merchant&vintage=N"
 ```
 
 #### Parameters
