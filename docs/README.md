@@ -110,7 +110,7 @@ Each component has a discovery endpoint to obtain the available items with full 
       curl -H "Authorization: Bearer $ID_TOKEN" \
      "$BASE_URL/query?metrics=gross_volume_attrited&filter=date=2022-07,2022-07;portfolio={your portfolio id}; \
      standalone=all_merchants;industry_group=1,2,3,4,5;region=2,3,4,5,6,7,8,9,10&group_by=date,portfolio& \
-     aggregation=none&normalizations=volume__last_year&baseline=-1"
+     aggregation=none&normalizations=volume__last_year"
 ```   
      
 **Possible values for Standalone/Household Attribute** 
